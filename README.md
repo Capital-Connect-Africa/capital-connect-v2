@@ -1,59 +1,43 @@
-# CapitalConnectV2
+# Capital Connect V2
+Welcome to the official capital connect frontend app code repository.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.7.
+## Contribution
+If you can access this repository from your account, congratulations because you can contribute to this codebase.
 
-## Development server
+## Installation
+To install this project:
 
-To start a local development server, run:
+1. Clone this repository `https://github.com/Capital-Connect-Africa/capital-connect-v2.git`
+2. At the project's root folder and install the required packages by using the command `npm install` from your terminal
+3. Deploy to localhost: `ng serve`
+## Deployments
+* Local: `http://localhost:4200`
+* Staging: 
+* Live: 
 
-```bash
-ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Tech Stack
+* `Angular 19`
+* `Typescript`
 
-## Code scaffolding
+### Structure
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+`core/` - contains reusable  
 
-```bash
-ng generate component component-name
-```
+* `pipes/`
+* `utils/`
+* `interfaces/` - custom entites
+    * `crud-methods.interface.ts` - defines crud methods
+    * `query-params.inteface.ts` - defines query params type
+* `services/`
+    * `base-http-service.ts`
+* `components/`
+* `interceptors/`
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+`features/` - app level features
 
-```bash
-ng generate --help
-```
+`models/` - database entities
 
-## Building
+`assets/` - house static files
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Happy coding!
