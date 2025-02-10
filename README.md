@@ -7,18 +7,18 @@ If you can access this repository from your account, congratulations because you
 ## Installation
 To install this project:
 
-1. Clone this repository `https://github.com/Capital-Connect-Africa/capital-connect-v2.git`
+1. Clone this repository ```https://github.com/Capital-Connect-Africa/capital-connect-v2.git```
 2. At the project's root folder and install the required packages by using the command `npm install` from your terminal
-3. Deploy to localhost: `ng serve`
+3. Deploy to localhost: ```ng serve```
 ## Deployments
-* Local: `http://localhost:4200`
+* Local: ```http://localhost:4200```
 * Staging: 
 * Live: 
 
 
 ## Tech Stack
-* `Angular 19`
-* `Typescript`
+* ```Angular 19```
+* ```Typescript```
 
 ### Structure
 
