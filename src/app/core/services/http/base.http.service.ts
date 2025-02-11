@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { CrudMethods } from '../../interfaces/crud.methods.interface';
+import { CrudMethods } from '../../../interfaces/crud.methods.interface';
 import {
   HttpClient,
   HttpErrorResponse,
@@ -7,7 +7,7 @@ import {
   HttpParams,
 } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
-import { QueryParams } from '../../interfaces/query.params.interface';
+import { QueryParams } from '../../../interfaces/query.params.interface';
 import { HttpErrorHandlerService } from './http.error.handler.service';
 
 @Injectable({ providedIn: 'root' })
