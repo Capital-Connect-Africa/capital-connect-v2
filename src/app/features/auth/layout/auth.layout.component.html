@@ -1,1 +1,14 @@
-<router-outlet />
+<main class="min-h-screen px-4 py-3 grid grid-cols-[40%_auto] gap-8">
+    <section class="relative isolate h-full rounded-[16px] overflow-hidden">
+        <img src="assets/img/happy-team.png" class="absolute inset-0 block h-full -z-[1]"/>
+        <div class="bg-[#3e51f745] h-full p-8 flex flex-col justify-between">
+            <img src="assets/img/logo-white.png" class="w-[100px] block"/>
+            <div class="">
+                <p class="text-white">It simplifies collaboration and keeps everyone on the same page, allowing us to focus more on creativity and less on logistics. Robert Howard - Project Manager</p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <router-outlet />
+    </section>
+</main>
