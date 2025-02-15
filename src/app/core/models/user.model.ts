@@ -14,6 +14,7 @@ export interface User{
     emailVerificationToken: string;
     emailVerificationExpires: string;
     hasAcceptedTerms: boolean
+    hasAcceptedPrivacyPolicy: boolean;
     termsAcceptedAt: Date;
     createdAt: Date;
     updatedAt: Date;
