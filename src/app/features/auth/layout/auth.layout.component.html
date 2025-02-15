@@ -1,16 +1,37 @@
 <main class="min-h-screen p-[5px] grid grid-cols-[45%_auto] gap-8">
-    <section class="relative isolate h-full rounded-[5px] overflow-hidden">
-        <img src="assets/img/businessman-working-laptop 1.png" class="absolute inset-0 block h-full w-full -z-[1] object-cover"/>
-        <div class="bg-capital-green-100 bg-opacity-[0.37] h-full flex flex-col justify-end">
-            <div class="px-8 pb-[8rem]">
-                <div class="text-white flex flex-col gap-4 w-[68%] ">
-                    <p class="font-inter font-normal text-[18px] leading-[28px]">It simplifies collaboration and keeps everyone on the same page, allowing us to focus more on creativity and less on logistics.</p>
-                    <p class="font-inter font-normal text-[15px] leading-[28px]">Robert Howard - Project Manager</p>
-                </div>
+  <p-carousel
+    [value]="slides"
+    [numVisible]="1"
+    [numScroll]="1"
+    [circular]="true"
+    [showNavigators]="false"
+    autoplayInterval="3000"
+    styleClass="h-full"
+  >
+    <ng-template let-slide #item>
+      <section class="relative isolate h-full rounded-[5px] overflow-hidden">
+        <img
+          [src]="slide.image"
+          class="absolute inset-0 block h-full w-full -z-[1] object-cover"
+        />
+        <div
+          class="bg-capital-green-100 bg-opacity-[0.37] h-full flex flex-col justify-end"
+        >
+          <div class="px-8 pb-[8rem]">
+            <div class="text-white flex flex-col gap-4 w-[64%]">
+              <p class="font-inter font-normal text-[18px] leading-[28px]">
+                {{ slide.quote }}
+              </p>
+              <p class="font-inter font-normal text-[15px] leading-[28px]">
+                {{ slide.author }}
+              </p>
             </div>
+          </div>
         </div>
-    </section>
-    <section>
-        <router-outlet />
-    </section>
+      </section>
+    </ng-template>
+  </p-carousel>
+  <section>
+    <router-outlet />
+  </section>
 </main>
