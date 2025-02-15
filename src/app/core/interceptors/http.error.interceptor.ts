@@ -7,20 +7,23 @@ import { EMPTY, of, throwError } from 'rxjs';
 import { ToastService } from '../services/toast.service';
 
 export const HttpErrorInterceptor: HttpInterceptorFn = (req, next) => {
-
   const router = inject(Router);
-  const toastService =inject(ToastService)
+  const toastService = inject(ToastService);
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-        if(error.error.statusCode === 400){
-            toastService.show({
-                severity: 'warn',
-                summary: `${error.status} - ${error.statusText}`,
-                details: error.message,
-            })
-            return EMPTY;
-        }
+      toastService.show({
+        severity: 'error',
+        summary: `${error.statusText}`.toUpperCase(),
+        details: error.error.message
+          ? error.error.message
+          : error.error.messages
+          ? error.error.messages.at(0)
+          : error.message,
+      });
+      if (error.error.statusCode === 400) {
+        return EMPTY;
+      }
       if (error.error.statusCode === 401) {
         return EMPTY;
       }
@@ -29,7 +32,6 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (req, next) => {
       }
       if (isValidCompanyOwnerPath(error.url as string)) {
         if (error.error.statusCode === 404) {
-          router.navigateByUrl('/organization/setup');
         }
         return EMPTY;
       }
