@@ -7,6 +7,6 @@ export interface SignupDetails{
     lastName: string;
     roles: USER_ROLES[];
     referralCode?: string;
-    hasAcceptedTerms: string;
-    hasAcceptedPrivacyPolicy: string;
+    hasAcceptedTerms: boolean;
+    hasAcceptedPrivacyPolicy: boolean;
 }
