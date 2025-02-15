@@ -25,6 +25,7 @@ export class SignupComponent {
   isTyping = false;
   animationState = true;
   Roles =USER_ROLES;
+  step =1
   helperText ='To begin this journey, tell us what type of account you’d be opening.'
 
   startTyping() {
@@ -37,7 +38,7 @@ export class SignupComponent {
     password: ['', Validators.required],
     lastName: ['', Validators.required],
     firstName: ['', Validators.required],
-    accountType: ['', Validators.required],
+    accountType: ['user', Validators.required],
     confirmPassword: ['', Validators.required],
     hasAcceptedTerms: ['', Validators.required],
     hasAcceptedPrivacyPolicy: ['', Validators.required],
@@ -45,6 +46,7 @@ export class SignupComponent {
   })
 
   handleRoleSelection(value:string){
+    this.step =1;
     this.signUpForm.get('accountType')?.setValue(value);
   }
 }

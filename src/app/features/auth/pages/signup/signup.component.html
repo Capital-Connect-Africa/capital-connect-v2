@@ -1,14 +1,24 @@
 <form class="h-full w-full flex items-center justify-center overflow-hidden" [formGroup]="signUpForm">
-    <div class="flex flex-col gap-[30px]" [@slideIn]="animationState" (@slideIn.done)="startTyping()">
-        <section class="flex flex-col gap-3">
-            <h1 class="font-inter text-3xl text-capital-black leading-[130%] font-semibold">Welcome!</h1>
-            <h2 class="text-[#8692A6] font-inter font-light opacity-0" *ngIf="!isTyping">{{helperText}}</h2>
-            <h2 class="text-[#8692A6] font-inter font-light" [class.typing-animation]="isTyping" [class.hidden]="!isTyping">{{helperText}}</h2>
-        </section>
-        <div class="flex flex-col gap-[30px]">
-            <select-button [active]="signUpForm.get('accountType')?.value === Roles.USER" placeholder="Personal account to manage all you activities" value="user" label="Business" (onSelect)="handleRoleSelection($event)"/>
-            <select-button [active]="signUpForm.get('accountType')?.value === Roles.INVESTOR" placeholder="Personal account to manage all you activities" value="investor" label="Investor" (onSelect)="handleRoleSelection($event)"/>
-        </div>
-        <p class="text-[#8692A6] font-inter font-light">Already have an account? <a routerLink="/auth"  class="text-capital-blue-75 font-medium hover:underline decoration-dotted underline-offset-4">Sign In</a></p>
+    <div class="flex flex-col gap-[30px] w-[80%]"  [@slideIn]="animationState" (@slideIn.done)="startTyping()">
+        <ng-container *ngIf="step ===0 || !signUpForm.get('accountType')?.value">
+            <section class="flex flex-col gap-3">
+                <h1 class="font-inter text-3xl text-capital-black leading-[130%] font-semibold">Welcome!</h1>
+                <h2 class="text-[#8692A6] font-inter font-light w-max" [class.typing-animation]="isTyping" [class.hidden]="!isTyping">{{helperText}}</h2>
+            </section>
+            <div class="flex flex-col gap-[30px]">
+                <select-button [active]="signUpForm.get('accountType')?.value === Roles.USER" placeholder="Personal account to manage all your activities" value="user" label="Business" (onSelect)="handleRoleSelection($event)"/>
+                <select-button [active]="signUpForm.get('accountType')?.value === Roles.INVESTOR" placeholder="Personal account to manage all your activities" value="investor" label="Investor" (onSelect)="handleRoleSelection($event)"/>
+            </div>
+
+            <p class="text-[#8692A6] font-inter font-light">Already have an account? <a routerLink="/auth"  class="text-capital-blue-75 font-medium hover:underline decoration-dotted underline-offset-4">Sign In</a></p>
+        </ng-container>
+
+        <ng-container *ngIf="step >0 && signUpForm.get('accountType')?.value">
+            <section class="flex flex-col gap-3">
+                <h1 class="font-inter text-3xl text-capital-black leading-[130%] font-semibold">Start Your Investment Journey!</h1>
+                <h2 class="text-[#8692A6] font-inter font-light">Create your account for a personalized investment dashboard, funding opportunities, and expert insights!</h2>
+            </section>
+        </ng-container>
+
     </div>
 </form>
