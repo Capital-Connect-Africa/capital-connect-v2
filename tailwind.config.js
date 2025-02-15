@@ -33,6 +33,10 @@ module.exports = {
             75: '#FDCB44',
             100: '#FCBA05',
             light: '#FFFBF1'
+          },
+          gray: {
+            light: '#CBD5E1',
+            dark: '#8692A6'
           }
         },
       },
