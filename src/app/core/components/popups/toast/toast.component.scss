@@ -1,0 +1,9 @@
+:host ::ng-deep .p-toast{
+    .p-toast-message{
+        padding: .5rem;
+        .p-toast-detail{
+            font-size: 12px;
+            font-family: "Inter", serif;
+        }
+    }
+}
