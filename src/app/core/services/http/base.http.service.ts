@@ -1,5 +1,4 @@
 import { inject, Injectable } from '@angular/core';
-import { CrudMethods } from '../../../interfaces/crud.methods.interface';
 import {
   HttpClient,
   HttpErrorResponse,
@@ -7,14 +6,16 @@ import {
   HttpParams,
 } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
-import { QueryParams } from '../../../interfaces/query.params.interface';
 import { HttpErrorHandlerService } from './http.error.handler.service';
+import { CrudMethods } from '../../interfaces/crud.methods.interface';
+import { QueryParams } from '../../interfaces/query.params.interface';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class BaseHttpService<T> implements CrudMethods<T> {
   private _httpClient = inject(HttpClient);
   private _errorHandler = inject(HttpErrorHandlerService);
-  private BASE_path = '';
+  private BASE_PATH = environment.apiUrl;
 
   create(
     path: string,
@@ -23,7 +24,7 @@ export class BaseHttpService<T> implements CrudMethods<T> {
   ): Observable<T> {
     const options = this.buildOptions({ headers });
     return this._httpClient
-      .post<T>(`${this.BASE_path}${path}`, payload, options)
+      .post<T>(`${this.BASE_PATH}${path}`, payload, options)
       .pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
   }
 
@@ -34,13 +35,13 @@ export class BaseHttpService<T> implements CrudMethods<T> {
   ): Observable<T[]> {
     const options = this.buildOptions({ headers, params });
     return this._httpClient
-      .get<T[]>(`${this.BASE_path}${path}`, options)
+      .get<T[]>(`${this.BASE_PATH}${path}`, options)
       .pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
   }
   getById(path: string, id: number, headers?: HttpHeaders): Observable<T> {
     const options = this.buildOptions({ headers });
     return this._httpClient
-      .get<T>(`${this.BASE_path}${path}/${id}`, options)
+      .get<T>(`${this.BASE_PATH}${path}/${id}`, options)
       .pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
   }
 
@@ -52,14 +53,14 @@ export class BaseHttpService<T> implements CrudMethods<T> {
   ): Observable<T> {
     const options = this.buildOptions({ headers });
     return this._httpClient
-      .put<T>(`${this.BASE_path}${path}/${id}`, payload, options)
+      .put<T>(`${this.BASE_PATH}${path}/${id}`, payload, options)
       .pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
   }
 
   delete(path: string, id: number, headers?: HttpHeaders): Observable<void> {
     const options = this.buildOptions({ headers });
     return this._httpClient
-      .delete<void>(`${this.BASE_path}${path}/${id}`, options)
+      .delete<void>(`${this.BASE_PATH}${path}/${id}`, options)
       .pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
   }
 
