@@ -1,4 +1,4 @@
-<div class="h-full w-full flex items-center justify-center overflow-hidden" >
+<form class="h-full w-full flex items-center justify-center overflow-hidden" [formGroup]="signUpForm">
     <div class="flex flex-col gap-[30px]" [@slideIn]="animationState" (@slideIn.done)="startTyping()">
         <section class="flex flex-col gap-3">
             <h1 class="font-inter text-3xl text-capital-black leading-[130%] font-semibold">Welcome!</h1>
@@ -6,9 +6,9 @@
             <h2 class="text-[#8692A6] font-inter font-light" [class.typing-animation]="isTyping" [class.hidden]="!isTyping">{{helperText}}</h2>
         </section>
         <div class="flex flex-col gap-[30px]">
-            <select-button  placeholder="Personal account to manage all you activities" value="user" label="Business"/>
-            <select-button placeholder="Personal account to manage all you activities" value="investor" label="Investor"/>
+            <select-button [active]="signUpForm.get('accountType')?.value === Roles.USER" placeholder="Personal account to manage all you activities" value="user" label="Business" (onSelect)="handleRoleSelection($event)"/>
+            <select-button [active]="signUpForm.get('accountType')?.value === Roles.INVESTOR" placeholder="Personal account to manage all you activities" value="investor" label="Investor" (onSelect)="handleRoleSelection($event)"/>
         </div>
-        <p class="text-[#8692A6] font-inter font-light">Already have an account? <a routerLink="/auth" class="text-capital-blue-75 font-medium hover:underline decoration-dotted underline-offset-4">Sign In</a></p>
+        <p class="text-[#8692A6] font-inter font-light">Already have an account? <a routerLink="/auth"  class="text-capital-blue-75 font-medium hover:underline decoration-dotted underline-offset-4">Sign In</a></p>
     </div>
-</div>
+</form>

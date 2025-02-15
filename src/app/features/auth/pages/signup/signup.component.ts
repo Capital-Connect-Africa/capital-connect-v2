@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { trigger, transition, style, animate } from '@angular/animations';
-import { SelectButtonComponent } from "../../../../core/components/select-button/select-button.component";
 import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SelectButtonComponent } from "../../../../core/components/select-button/select-button.component";
+import { USER_ROLES } from '../../../../core/enums/user.roles.enum';
 
 @Component({
   selector: 'app-signup',
-  imports: [RouterLink, SelectButtonComponent, CommonModule],
+  imports: [RouterLink, SelectButtonComponent, CommonModule, ReactiveFormsModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
   animations: [
@@ -22,9 +24,27 @@ import { CommonModule } from '@angular/common';
 export class SignupComponent {
   isTyping = false;
   animationState = true;
+  Roles =USER_ROLES;
   helperText ='To begin this journey, tell us what type of account you’d be opening.'
 
   startTyping() {
     this.isTyping = true;
+  }
+
+  private _formBuilder = inject(FormBuilder);
+
+  signUpForm = this._formBuilder.group({
+    password: ['', Validators.required],
+    lastName: ['', Validators.required],
+    firstName: ['', Validators.required],
+    accountType: ['', Validators.required],
+    confirmPassword: ['', Validators.required],
+    hasAcceptedTerms: ['', Validators.required],
+    hasAcceptedPrivacyPolicy: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+  })
+
+  handleRoleSelection(value:string){
+    this.signUpForm.get('accountType')?.setValue(value);
   }
 }
