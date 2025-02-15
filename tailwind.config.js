@@ -31,12 +31,13 @@ module.exports = {
             25: '#FEEEC1',
             50: '#FDDC82',
             75: '#FDCB44',
-            100: '#FCBA05'
+            100: '#FCBA05',
+            light: '#FFFBF1'
           }
         },
       },
       fontFamily: {
-
+        'inter': ['"Inter"', 'serif',]
       }
     },
   },
