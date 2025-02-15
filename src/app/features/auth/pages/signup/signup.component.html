@@ -2,7 +2,8 @@
     <div class="flex flex-col gap-[30px]" [@slideIn]="animationState" (@slideIn.done)="startTyping()">
         <section class="flex flex-col gap-3">
             <h1 class="font-inter text-3xl text-capital-black leading-[130%] font-semibold">Welcome!</h1>
-            <h2 class="text-[#8692A6] font-inter font-light" [class.typing-animation]="isTyping" [class.hidden]="!isTyping">To begin this journey, tell us what type of account you’d be opening.</h2>
+            <h2 class="text-[#8692A6] font-inter font-light opacity-0" *ngIf="!isTyping">{{helperText}}</h2>
+            <h2 class="text-[#8692A6] font-inter font-light" [class.typing-animation]="isTyping" [class.hidden]="!isTyping">{{helperText}}</h2>
         </section>
         <div class="flex flex-col gap-[30px]">
             <select-button  placeholder="Personal account to manage all you activities" value="user" label="Business"/>
