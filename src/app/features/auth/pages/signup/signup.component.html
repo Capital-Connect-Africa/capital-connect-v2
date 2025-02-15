@@ -1,4 +1,4 @@
-<form class="h-full w-full flex items-center justify-center overflow-hidden" [formGroup]="signUpForm">
+<form class="h-full w-full flex items-center justify-center overflow-hidden" [formGroup]="signUpForm" (ngSubmit)="submitForm()">
     <div class="flex flex-col gap-[30px] w-[80%]"  [@slideIn]="animationState" (@slideIn.done)="startTyping()">
         <ng-container *ngIf="step ===0 || !signUpForm.get('accountType')?.value">
             <section class="flex flex-col gap-3">
@@ -18,7 +18,31 @@
                 <h1 class="font-inter text-3xl text-capital-black leading-[130%] font-semibold">Start Your Investment Journey!</h1>
                 <h2 class="text-[#8692A6] font-inter font-light">Create your account for a personalized investment dashboard, funding opportunities, and expert insights!</h2>
             </section>
+            <div class="grid grid-cols-2 gap-x-4 gap-y-6">
+                <input-field formControlName="firstName" placeholder="Enter your First Name" label="First Name"/>
+                <input-field formControlName="lastName" placeholder="Enter your Last Name" label="Last Name"/>
+                <div class="col-span-2">
+                    <input-field formControlName="username" type="email" placeholder="Enter Email" label="Email"/>
+                </div>
+                <input-field formControlName="password" (onIconTouch)="togglePasswordVisibility()" [type]="isPasswordVisible? 'text': 'password'" [icon]="isPasswordVisible? 'pi pi-eye-slash' : 'pi pi-eye'" placeholder="Choose a strong password" label="Password"/>
+                <input-field  formControlName="confirmPassword" (onIconTouch)="togglePasswordVisibility()" type="password" [type]="isPasswordVisible? 'text': 'password'" [icon]="isPasswordVisible? 'pi pi-eye-slash' : 'pi pi-eye'" placeholder="Re-enter password" label="Confirm Password"/>
+            </div>
+            <div class="flex items-center gap-24">
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" class="cursor-pointer" formControlName ="hasAcceptedTerms"/>
+                    <a href="https://capitalconnect.africa/terms-and-conditions/" target="_blank" class="text-[#7D7F83] font-inter text-sm font-light hover:underline decoration-dotted underline-offset-4 transition-all">I agree to terms & conditions</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" class="cursor-pointer" formControlName ="hasAcceptedPrivacyPolicy"/>
+                    <a href="https://capitalconnect.africa/privacy-policy-2/" target="_blank" class="text-[#7D7F83] font-inter text-sm font-light hover:underline decoration-dotted underline-offset-4 transition-all">Accept our privacy policy</a>
+                </div>
+            </div>
+            <app-button [showContent]="!isLoading" [disabled]="signUpForm.invalid || isLoading" className="bg-capital-green-75 hover:bg-capital-green-100 transition-all" label="Sign Up & Unlock Insights!">
+                <app-loader />
+            </app-button>
         </ng-container>
-
     </div>
 </form>
+
+<ng-container *ngIf="signup$ | async"></ng-container>
+<ng-container *ngIf="isLoading$ | async"></ng-container>
