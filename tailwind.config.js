@@ -31,14 +31,19 @@ module.exports = {
             25: '#FEEEC1',
             50: '#FDDC82',
             75: '#FDCB44',
-            100: '#FCBA05'
+            100: '#FCBA05',
+            light: '#FFFBF1'
+          },
+          gray: {
+            light: '#CBD5E1',
+            dark: '#8692A6'
           }
         },
       },
       fontFamily: {
-
+        'inter': ['"Inter"', 'serif',]
       }
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-primeui')]
 }
