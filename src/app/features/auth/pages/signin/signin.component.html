@@ -1,0 +1,48 @@
+<form class="h-full w-full flex items-center justify-center overflow-hidden" [formGroup]="signUpForm" (ngSubmit)="submitForm()">
+    <div class="flex flex-col gap-[30px] w-[80%]"  [@slideIn]="animationState" (@slideIn.done)="startTyping()">
+        <ng-container *ngIf="step ===0 || !signUpForm.get('accountType')?.value">
+            <section class="flex flex-col gap-3">
+                <h1 class="font-inter text-3xl text-capital-black leading-[130%] font-semibold">Welcome!</h1>
+                <h2 class="text-[#8692A6] font-inter font-light w-max" [class.typing-animation]="isTyping" [class.hidden]="!isTyping">{{helperText}}</h2>
+            </section>
+            <div class="flex flex-col gap-[30px]">
+                <select-button [active]="signUpForm.get('accountType')?.value === Roles.USER" placeholder="Personal account to manage all your activities" value="user" label="Business" (onSelect)="handleRoleSelection($event)"/>
+                <select-button [active]="signUpForm.get('accountType')?.value === Roles.INVESTOR" placeholder="Personal account to manage all your activities" value="investor" label="Investor" (onSelect)="handleRoleSelection($event)"/>
+            </div>
+
+            <p class="text-[#8692A6] font-inter font-light">Already have an account? <a routerLink="/auth"  class="text-capital-blue-75 font-medium hover:underline decoration-dotted underline-offset-4">Sign In</a></p>
+        </ng-container>
+
+        <ng-container *ngIf="step >0 && signUpForm.get('accountType')?.value">
+            <section class="flex flex-col gap-3">
+                <h1 class="font-inter text-3xl text-capital-black leading-[130%] font-semibold">Sign In to Your Investment Dashboard</h1>
+                <h2 class="text-[#8692A6] font-inter font-light">Wellcome back! Access your personalized insights, funding opportunities, and <br/>investment tools</h2>
+            </section>
+
+            <hr/>
+
+            <div class="grid grid-cols-2 gap-x-4 gap-y-6">
+               
+                <div class="col-span-2">
+                    <input-field formControlName="username" type="email" placeholder="Enter Email" label="Email"/>
+                </div>
+
+                <div class="col-span-2">
+                    <input-field formControlName="password" (onIconTouch)="togglePasswordVisibility()" [type]="isPasswordVisible? 'text': 'password'" [icon]="isPasswordVisible? 'pi pi-eye-slash' : 'pi pi-eye'" placeholder="Choose a strong password" label="Password"/>
+                </div>
+
+            </div>
+            <div class="flex items-center gap-24">
+                <div class="flex items-center gap-2">
+                    <a href="https://capitalconnect.africa/terms-and-conditions/" target="_blank" class="text-capital-green-75 font-inter text-sm font-light hover:underline underline transition-all">Forgot Password?</a>
+                </div>
+            </div>
+            <app-button [showContent]="!isLoading" [disabled]="signUpForm.invalid || isLoading" className="bg-capital-green-100 hover:bg-capital-green-75 transition-all" label="Sign In & Continue">
+                <app-loader />
+            </app-button>
+        </ng-container>
+    </div>
+</form>
+
+<ng-container *ngIf="signup$ | async"></ng-container>
+<ng-container *ngIf="isLoading$ | async"></ng-container>
