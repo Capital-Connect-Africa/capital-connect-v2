@@ -87,4 +87,9 @@ export class SignupComponent {
   submitForm() {
     this.signup$ =this._authService.signup(this.signUpForm.value as SignupDetails)
   }
+
+  goBack(){
+    if(this.step -1 <0) return
+    this.step -=1;
+  }
 }
