@@ -44,27 +44,26 @@ import { LoadingService } from '../../../../core/services/loading.service';
 })
 
 export class SignInComponent {
+  //booleans
+  current_form: string = 'login';
   isTyping = false;
   animationState = true;
-  Roles = USER_ROLES;
-  step = 1;
-  helperText =
-    'To begin this journey, tell us what type of account you’d be opening.';
   isPasswordVisible = false;
-  startTyping() {
-    this.isTyping = true;
-  }
+
   signup$ =new Observable();
   isLoading =false;
+
+  //services
   private _formBuilder = inject(FormBuilder);
   private _authService =inject(AuthService);
   private _loadingService =inject(LoadingService);
+
   isLoading$ =this._loadingService.isLoading.pipe(tap(v => {
-    v? this.signUpForm.disable(): this.signUpForm.enable();
+    v? this.signInForm.disable(): this.signInForm.enable();
     this.isLoading =v
   }))
 
-  signUpForm = this._formBuilder.group({
+  signInForm = this._formBuilder.group({
     password: ['Test', Validators.required],
     lastName: ['User', Validators.required],
     firstName: ['Test', Validators.required],
@@ -75,9 +74,8 @@ export class SignInComponent {
     hasAcceptedPrivacyPolicy: [true, Validators.requiredTrue],
   });
 
-  handleRoleSelection(value: string) {
-    this.step = 1;
-    this.signUpForm.get('accountType')?.setValue(value);
+  startTyping() {
+    this.isTyping = true;
   }
 
   togglePasswordVisibility() {
@@ -85,6 +83,22 @@ export class SignInComponent {
   }
 
   submitForm() {
-    this.signup$ =this._authService.signup(this.signUpForm.value as SignupDetails)
+    this.signup$ =this._authService.signup(this.signInForm.value as SignupDetails)
+    // this.signIn$ = this._authService.signin(this.signInForm.value as SigninDetails);
   }
+
+  setCurrentForm(form: string) {
+    this.current_form = form;    
+  }
+
+  authBack(){
+    if(this.current_form === 'forgot'){
+      this.setCurrentForm('login')
+    }else if(this.current_form === 'check_inbox'){
+      this.setCurrentForm('forgot')
+    }else if(this.current_form === 'set_password'){
+      this.setCurrentForm('check_inbox')
+    }
+}
+
 }

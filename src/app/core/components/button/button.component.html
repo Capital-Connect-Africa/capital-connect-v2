@@ -5,18 +5,18 @@
   [class]="className"
   [ngClass]="{ 'bg-capital-green-25 hover:bg-capital-green-25': disabled }"
   (click)="handleClick()"
->
+  >
   <ng-container *ngIf="showContent">
     <span
       class="text-sm group-hover:translate-x-2 transition-all"
       [ngClass]="{ 'group-hover:translate-x-0': disabled }"
       >{{ label }}</span
-    >
-    <i
+      >
+        <i
       *ngIf="showArrow"
-      class="pi pi-arrow-right text-xs group-hover:translate-x-2 transition-all"
-      [ngClass]="{ 'group-hover:translate-x-0': disabled }"
-    ></i>
+          class="pi pi-arrow-right text-xs group-hover:translate-x-2 transition-all"
+          [ngClass]="{ 'group-hover:translate-x-0': disabled }"
+        ></i>
   </ng-container>
-  <ng-content></ng-content>
-</button>
+    <ng-content></ng-content>
+  </button>
