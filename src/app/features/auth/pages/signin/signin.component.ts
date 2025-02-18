@@ -7,8 +7,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { SelectButtonComponent } from '../../../../core/components/select-button/select-button.component';
-import { USER_ROLES } from '../../../../core/enums/user.roles.enum';
 import { InputFieldComponent } from '../../../../core/components/fields/input-field/input-field.component';
 import { ButtonComponent } from '../../../../core/components/button/button.component';
 import { Observable, tap } from 'rxjs';
@@ -21,7 +19,6 @@ import { LoadingService } from '../../../../core/services/loading.service';
   selector: 'app-signup',
   imports: [
     RouterLink,
-    SelectButtonComponent,
     CommonModule,
     ReactiveFormsModule,
     InputFieldComponent,
