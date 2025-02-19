@@ -1,7 +1,6 @@
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { trigger, transition, style, animate } from '@angular/animations';
 import {
   FormBuilder,
   ReactiveFormsModule,
@@ -16,6 +15,8 @@ import { AuthService } from '../../services/auth.service';
 import { SignupDetails } from '../../../../core/interfaces/signup.details.interface';
 import { LoaderComponent } from "../../../../core/components/loader/loader.component";
 import { LoadingService } from '../../../../core/services/loading.service';
+import { AnimationState } from '../../../../core/enums/animation.state.enum';
+import { slideInFromBottom, slideInFromLeft, slideInFromRight } from '../../../../core/utils/animation.triggers.util'; 
 
 @Component({
   selector: 'app-signup',
@@ -31,23 +32,18 @@ import { LoadingService } from '../../../../core/services/loading.service';
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
   animations: [
-    trigger('slideIn', [
-      transition(':enter', [
-        style({ transform: 'translateY(100%)', opacity: 0 }),
-        animate(
-          '1s ease-out',
-          style({ transform: 'translateY(0)', opacity: 1 })
-        ),
-      ]),
-    ]),
+    slideInFromRight, 
+    slideInFromBottom, 
+    slideInFromLeft
   ],
 })
 
 export class SignupComponent {
   isTyping = false;
-  animationState = true;
+  animationStates =AnimationState
+  animationState =AnimationState.BOTTOM;
   Roles = USER_ROLES;
-  step = 1;
+  step = 0;
   helperText =
     'To begin this journey, tell us what type of account you’d be opening.';
   isPasswordVisible = false;
@@ -65,19 +61,19 @@ export class SignupComponent {
   }))
 
   signUpForm = this._formBuilder.group({
-    password: ['Test', Validators.required],
-    lastName: ['User', Validators.required],
-    firstName: ['Test', Validators.required],
-    accountType: ['user', Validators.required],
-    confirmPassword: ['Test', Validators.required],
-    hasAcceptedTerms: [true, Validators.requiredTrue],
-    username: ['email@gmail.com', [Validators.required, Validators.email]],
-    hasAcceptedPrivacyPolicy: [true, Validators.requiredTrue],
+    password: ['', Validators.required],
+    lastName: ['', Validators.required],
+    firstName: ['', Validators.required],
+    accountType: ['', Validators.required],
+    confirmPassword: ['', Validators.required],
+    hasAcceptedTerms: [false, Validators.requiredTrue],
+    username: ['', [Validators.required, Validators.email]],
+    hasAcceptedPrivacyPolicy: [false, Validators.requiredTrue],
   });
 
   handleRoleSelection(value: string) {
-    this.step = 1;
     this.signUpForm.get('accountType')?.setValue(value);
+    this.next()
   }
 
   togglePasswordVisibility() {
@@ -88,8 +84,13 @@ export class SignupComponent {
     this.signup$ =this._authService.signup(this.signUpForm.value as SignupDetails)
   }
 
-  goBack(){
-    if(this.step -1 <0) return
-    this.step -=1;
+  next(stride:number =1){
+    if(stride >0){
+      this.animationState =AnimationState.RIGHT
+    }else if(stride <0){
+      if((this.step +stride) <0) return
+      this.animationState =AnimationState.LEFT
+    }
+    this.step +=stride;
   }
 }
