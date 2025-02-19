@@ -3,9 +3,8 @@ import { AuthLayoutComponent } from './features/auth/layout/auth.layout.componen
 
 export const routes: Routes = [
   {
-    path: 'auth',
+    path: '',
     component: AuthLayoutComponent,
-    loadChildren: () =>
-      import('./features/auth/auth.routes').then((m) => m.AuthRoutes),
+    loadChildren: () => import('./features/auth/auth.routes').then((m) => m.AuthRoutes),
   },
 ];
