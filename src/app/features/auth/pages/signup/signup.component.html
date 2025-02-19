@@ -1,5 +1,7 @@
 <form class="h-full w-full flex items-center justify-center overflow-hidden" [formGroup]="signUpForm" (ngSubmit)="submitForm()">
-    <div class="flex flex-col gap-4 w-[80%]"  [@slideIn]="animationState" (@slideIn.done)="startTyping()">
+    <div class="flex flex-col gap-4 w-[80%]"  [@slideInFromBottom]="animationState === animationStates.BOTTOM"
+    (@slideInFromBottom.done)="startTyping()">
+    <div [@slideInFromLeft]="animationState === animationStates.LEFT" class="contents">
         <ng-container *ngIf="step ===0 || !signUpForm.get('accountType')?.value">
             <section class="flex flex-col gap-3">
                 <h1 class="font-inter text-3xl text-capital-black leading-[130%] font-semibold">Welcome!</h1>
@@ -13,16 +15,18 @@
             <p class="text-[#8692A6] font-inter font-light">Already have an account? <a routerLink="/"  class="text-capital-blue-75 font-medium hover:underline decoration-dotted underline-offset-4">Sign In</a></p>
         </ng-container>
 
+    </div>
+    <div [@slideInFromRight]="animationState === animationStates.RIGHT" class="contents">
         <ng-container *ngIf="step >0 && signUpForm.get('accountType')?.value">
             <div class="flex flex-col gap-8">
-                <button (click)="goBack()" type="button" class="hover:bg-capital-yellow-light transition-all border-2 border-capital-yellow-75 h-[34px] w-[34px] rounded-full flex items-center justify-center">
+                <button (click)="next(-1)" type="button" class="hover:bg-capital-yellow-light transition-all border-2 border-capital-yellow-75 h-[34px] w-[34px] rounded-full flex items-center justify-center">
                     <i class="pi pi-arrow-left text-capital-yellow-75 text-xs"></i>
                 </button>
-                <p class="text-[#8692A6] font-inter font-light text-sm">Already have an account? <a routerLink="/"  class="text-capital-green-75 font-medium hover:underline decoration-dotted underline-offset-4">Sign In</a></p>
+                <p class="text-[#8692A6] font-inter font-light text-sm">Already have an account? <a routerLink="/auth"  class="text-capital-green-75 font-medium hover:underline decoration-dotted underline-offset-4">Sign In</a></p>
             </div>
             <section class="flex flex-col gap-3">
                 <h1 class="font-inter text-3xl text-capital-black leading-[130%] font-semibold">Start Your Investment Journey!</h1>
-                <h2 class="text-[#8692A6] font-inter font-light">Create your account for a personalized investment dashboard, funding opportunities, and expert insights!</h2>
+                <h2 class="text-[#8692A6] font-inter font-light pb-4">Create your account for a personalized investment dashboard, funding opportunities, and expert insights!</h2>
             </section>
             <div class="grid grid-cols-2 gap-x-4 gap-y-6">
                 <input-field formControlName="firstName" placeholder="Enter your First Name" label="First Name"/>
@@ -47,6 +51,7 @@
                 <app-loader />
             </app-button>
         </ng-container>
+        </div>
     </div>
 </form>
 
