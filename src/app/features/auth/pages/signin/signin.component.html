@@ -1,7 +1,15 @@
 <form class="h-full w-full flex items-center justify-center overflow-hidden" [formGroup]="signInForm" (ngSubmit)="submitForm()">
     <div class="flex flex-col gap-[30px] w-[80%]"  [@slideIn]="animationState" (@slideIn.done)="startTyping()">
      
-        <button (click)="authBack()" type="button" class="hover:bg-capital-yellow-light transition-all border-2 border-capital-yellow-75 h-[34px] w-[34px] rounded-full flex items-center justify-center">
+        <div class="md:hidden  rounded-full flex justify-start">
+            <svg  class="size-5 rounded-full p-1 border"  xmlns="http://www.w3.org/2000/svg" fill="#F4F7FF" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>
+        </div>
+        
+          
+
+        <button (click)="authBack()" type="button" class="hidden hover:bg-capital-yellow-light transition-all border-2 border-capital-yellow-75 h-[34px] w-[34px] rounded-full md:flex items-center justify-center">
             <i class="pi pi-arrow-left text-capital-yellow-75 text-xs"></i>
         </button>
 
@@ -69,25 +77,28 @@
 
         <!-- Login -->
         <ng-container *ngIf="current_form === 'login'">
-            <div class="flex items-center gap-2">
-                <a routerLink="/signup" class="text-[#8692A6] font-inter text-sm font-light  transition-all">Don't have an account? <span class="text-capital-green-75 font-semibold">Sign Up</span></a>
+            <div class="hidden md:flex items-center gap-2">
+                <a routerLink="/signup" class=" text-[#8692A6] font-inter text-sm font-light  transition-all">Don't have an account? <span class="text-capital-green-75 font-semibold">Sign Up</span></a>
             </div>
 
             <section class="flex flex-col gap-3">
-                <h1 class="font-inter text-3xl text-capital-black leading-[130%] font-semibold">Sign In to Your Investment Dashboard</h1>
-                <h2 class="text-[#8692A6] font-inter font-light">Wellcome back! Access your personalized insights, funding opportunities, and <br/>investment tools</h2>
+                <h1 class="hidden md:block font-inter text-3xl text-capital-black leading-[130%] font-semibold">Sign In to Your Investment Dashboard</h1>
+                <h1 class="md:hidden text-[16px] font-semibold font-inter leading-[20px] mb-4 mt-1">Wellcome Back</h1>
+                <h2 class="hidden md:block text-[#8692A6] font-inter font-light">Wellcome back! Access your personalized insights, funding opportunities, and <br/>investment tools</h2>
+                <h2 class="md:hidden text-[#8692A6] text-[16px] font-light font-inter leading-[23px]">Access your personalized insights and funding <br/>opportunities</h2>
+
             </section>
 
-            <hr/>
+            <hr class="hidden md:block"/>
 
             <div class="grid grid-cols-2 gap-x-4 gap-y-6">
                
-                <div class="col-span-2">
-                    <input-field formControlName="username" type="email" placeholder="Enter Email" label="Email"/>
+                <div class="col-span-2  [&>label]:text-red-500">
+                    <input-field formControlName="username" class="[&_label]:text-capital-black" type="email" placeholder="Enter Email" label="Email" />
                 </div>
 
                 <div class="col-span-2">
-                    <input-field formControlName="password" (onIconTouch)="togglePasswordVisibility()" [type]="isPasswordVisible? 'text': 'password'" [icon]="isPasswordVisible? 'pi pi-eye-slash' : 'pi pi-eye'" placeholder="Choose a strong password" label="Password"/>
+                    <input-field formControlName="password"  class="[&_label]:text-capital-black" (onIconTouch)="togglePasswordVisibility()" [type]="isPasswordVisible? 'text': 'password'" [icon]="isPasswordVisible? 'pi pi-eye-slash' : 'pi pi-eye'" placeholder="Choose a strong password" label="Password"/>
                 </div>
 
             </div>
@@ -101,6 +112,10 @@
             <app-button [showContent]="!isLoading" [disabled]="signInForm.invalid || isLoading" className="bg-capital-green-100 hover:bg-capital-green-75 transition-all" label="Sign In & Continue">
                 <app-loader />
             </app-button>
+
+            <div class="md:hidden flex items-center gap-2">
+                <a routerLink="/signup" class=" text-[#8692A6] font-inter text-sm font-light  transition-all">Don't have an account? <span class="text-capital-green-75 font-semibold">Sign Up</span></a>
+            </div>
         </ng-container>
 
 
