@@ -12,7 +12,7 @@
                 <select-button icon="pi pi-user" [active]="signUpForm.get('accountType')?.value === Roles.ADVISOR" placeholder="Personal account to manage all your activities" value="advisor" label="Advisor" (onSelect)="handleRoleSelection($event)"/>
             </div>
 
-            <p class="text-capital-gray-dark font-inter text-sm font-light">Already have an account? <a routerLink="/"  class="text-capital-blue-75 font-medium hover:underline decoration-dotted underline-offset-4">Sign In</a></p>
+            <p class="text-capital-gray-dark font-inter text-sm font-light">Already have an account? <a routerLink="/auth"  class="text-capital-blue-75 font-medium hover:underline decoration-dotted underline-offset-4">Sign In</a></p>
         </ng-container>
 
     </div>
@@ -52,7 +52,7 @@
                 <app-button [showContent]="!isLoading" [disabled]="signUpForm.invalid || isLoading" className="bg-capital-green-75 hover:bg-capital-green-100 transition-all" label="Sign Up & Unlock Insights!">
                     <app-loader />
                 </app-button>
-                <p class="text-[#8692A6] font-inter lg:hidden font-light text-xs">Already have an account? <a routerLink="/"  class="text-capital-green-75 font-medium hover:underline decoration-dotted underline-offset-4">Sign In</a></p>
+                <p class="text-[#8692A6] font-inter lg:hidden font-light text-xs">Already have an account? <a routerLink="/auth"  class="text-capital-green-75 font-medium hover:underline decoration-dotted underline-offset-4">Sign In</a></p>
             </div>
         </ng-container>
         </div>
