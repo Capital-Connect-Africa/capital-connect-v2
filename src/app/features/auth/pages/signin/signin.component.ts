@@ -92,7 +92,7 @@ export class SignInComponent {
     }else if(this.current_form === 'set_password'){
       this.setCurrentForm('check_inbox')
     }else{
-      this._router.navigateByUrl('')
+      this._router.navigateByUrl('/')
     }
 }
 
