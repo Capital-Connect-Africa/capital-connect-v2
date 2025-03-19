@@ -1,9 +1,9 @@
 <button
   [type]="type"
   [disabled]="disabled"
-  class="group text-capital-white font-inter leading-6 flex items-center justify-center gap-3 w-full px-5 py-4 rounded-xl rounded-ss-none"
+  class="group text-capital-white font-inter leading-6 text-sm sm:font-light md:font-normal md:text-base flex items-center justify-center gap-3 w-full px-5 py-3 md:py-4 rounded-lg rounded-ss-none"
   [class]="className"
-  [ngClass]="{ 'bg-capital-green-25 hover:bg-capital-green-25': disabled }"
+  [ngClass]="{ 'bg-capital-green-25 hover:bg-capital-green-25': disabled}"
   (click)="handleClick()"
   >
   <ng-container *ngIf="showContent">
@@ -12,7 +12,7 @@
       >
         <i
       *ngIf="showArrow"
-          class="pi pi-arrow-right text-xs group-hover:translate-x-2 transition-all"
+          class="hidden md:block pi pi-arrow-right text-xs group-hover:translate-x-2 transition-all"
           [ngClass]="{ 'group-hover:translate-x-0': disabled }"
         ></i>
   </ng-container>

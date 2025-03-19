@@ -1,4 +1,4 @@
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
@@ -23,7 +23,7 @@ import { LoadingService } from '../../../../core/services/loading.service';
     ReactiveFormsModule,
     InputFieldComponent,
     ButtonComponent,
-    LoaderComponent
+    LoaderComponent,
 ],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.scss',
@@ -46,6 +46,7 @@ export class SignInComponent {
   isTyping = false;
   animationState = true;
   isPasswordVisible = false;
+  isShowSignInForm =false
 
   signup$ =new Observable();
   isLoading =false;
@@ -54,6 +55,7 @@ export class SignInComponent {
   private _formBuilder = inject(FormBuilder);
   private _authService =inject(AuthService);
   private _loadingService =inject(LoadingService);
+  private _router =inject(Router)
 
   isLoading$ =this._loadingService.isLoading.pipe(tap(v => {
     v? this.signInForm.disable(): this.signInForm.enable();
@@ -61,14 +63,8 @@ export class SignInComponent {
   }))
 
   signInForm = this._formBuilder.group({
-    password: ['Test', Validators.required],
-    lastName: ['User', Validators.required],
-    firstName: ['Test', Validators.required],
-    accountType: ['user', Validators.required],
-    confirmPassword: ['Test', Validators.required],
-    hasAcceptedTerms: [true, Validators.requiredTrue],
-    username: ['email@gmail.com', [Validators.required, Validators.email]],
-    hasAcceptedPrivacyPolicy: [true, Validators.requiredTrue],
+    username: ['', [Validators.required]],
+    password: ['', Validators.required],
   });
 
   startTyping() {
@@ -95,7 +91,10 @@ export class SignInComponent {
       this.setCurrentForm('forgot')
     }else if(this.current_form === 'set_password'){
       this.setCurrentForm('check_inbox')
+    }else{
+      this._router.navigateByUrl('/')
     }
 }
+
 
 }

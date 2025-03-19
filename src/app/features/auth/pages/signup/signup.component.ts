@@ -65,10 +65,8 @@ export class SignupComponent {
     lastName: ['', Validators.required],
     firstName: ['', Validators.required],
     accountType: ['', Validators.required],
-    confirmPassword: ['', Validators.required],
-    hasAcceptedTerms: [false, Validators.requiredTrue],
+    hasAcceptedTermsOfUseAndPrivacyPolicy: [false, Validators.requiredTrue],
     username: ['', [Validators.required, Validators.email]],
-    hasAcceptedPrivacyPolicy: [false, Validators.requiredTrue],
   });
 
   handleRoleSelection(value: string) {
@@ -81,7 +79,15 @@ export class SignupComponent {
   }
 
   submitForm() {
-    this.signup$ =this._authService.signup(this.signUpForm.value as SignupDetails)
+    if(!this.signUpForm.valid) return;
+    const values =this.signUpForm.value
+    const hasAcceptedTermsOfUseAndPrivacyPolicy =values.hasAcceptedTermsOfUseAndPrivacyPolicy
+    delete values.hasAcceptedTermsOfUseAndPrivacyPolicy
+    const userConsent ={
+      hasAcceptedPrivacyPolicy: hasAcceptedTermsOfUseAndPrivacyPolicy,
+      hasAcceptedTerms: hasAcceptedTermsOfUseAndPrivacyPolicy
+    }
+    this.signup$ =this._authService.signup({...values, ...userConsent } as SignupDetails)
   }
 
   next(stride:number =1){

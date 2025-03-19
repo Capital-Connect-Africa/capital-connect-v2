@@ -5,17 +5,15 @@
     [circular]="true"
     [showNavigators]="false"
     autoplayInterval="3000"
-    styleClass="h-full"
+    styleClass="md:h-full h-0 hidden md:block"
   >
     <ng-template let-slide #item>
       <section class="relative isolate h-full rounded-[5px] overflow-hidden">
         <img
           [src]="slide.image"
           class="absolute inset-0 block h-full w-full -z-[1] object-cover"
-        />
-        <div
-          class="bg-capital-green-100 bg-opacity-[0.37] h-full flex flex-col justify-end"
-        >
+        />  
+        <div class="bg-capital-green-100 bg-opacity-[0.37] h-full flex flex-col justify-end">
           <div class="px-8 pb-[8rem]">
             <div class="text-white flex flex-col gap-4 w-[64%]">
               <p class="font-inter font-normal text-[18px] leading-[28px]">

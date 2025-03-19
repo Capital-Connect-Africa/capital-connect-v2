@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SliderComponent } from "../../../core/components/slider/slider.component";
+import { SliderComponent } from "../../../../core/components/slider/slider.component";
 
 @Component({
   selector: 'auth-layout',

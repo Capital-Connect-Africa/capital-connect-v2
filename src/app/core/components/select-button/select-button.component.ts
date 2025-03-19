@@ -12,6 +12,7 @@ export class SelectButtonComponent {
   @Input() label!: string;
   @Input() placeholder!: string;
   @Input() active: boolean = false;
+  @Input() icon:string ='pi pi-briefcase';
   @Output() onSelect = new EventEmitter<any>();
 
   handleSelect() {
