@@ -10,17 +10,19 @@
     <ng-template let-slide #item>
       <section class="relative isolate h-full rounded-[5px] overflow-hidden">
         <img
-          [src]="slide.image"
+          [src]="slide.imageUrl"
           class="absolute inset-0 block h-full w-full -z-[1] object-cover"
         />  
-        <div class="bg-capital-green-100 bg-opacity-[0.37] h-full flex flex-col justify-end">
-          <div class="px-8 pb-[8rem]">
-            <div class="text-white flex flex-col gap-4 w-[64%]">
-              <p class="font-inter font-normal text-[18px] leading-[28px]">
-                {{ slide.quote }}
-              </p>
-              <p class="font-inter font-normal text-[15px] leading-[28px]">
-                {{ slide.author }}
+        <img
+          *ngIf="slide.logoUrl"
+          [src]="slide.logoUrl"
+          class="absolute top-[20px] left-[30px] block w-[120px] object-cover"
+        />  
+        <div class="bg-capital-green-100 bg-opacity-[0.37] h-full flex flex-col justify-end" [class]="slide.className">
+          <div class="px-4 pb-[4.5rem]">
+            <div class="text-white flex flex-col gap-4 w-[80%]">
+              <p class="font-inter font-light text-[16px] leading-[20px]">
+                {{ slide.description }}
               </p>
             </div>
           </div>
