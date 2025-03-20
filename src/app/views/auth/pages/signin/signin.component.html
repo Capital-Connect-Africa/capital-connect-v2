@@ -1,5 +1,5 @@
 <form class="h-full w-full flex items-center justify-center overflow-hidden" [formGroup]="signInForm" (ngSubmit)="submitForm()">
-    <div class="flex flex-col gap-[30px] w-[95%] lg:w-[80%]"  [@slideIn]="animationState" (@slideIn.done)="startTyping()">
+    <div class="flex flex-col gap-[30px] w-[95%] lg:w-[80%]"  [@slideIn]="animationState">
      
         <div class="md:hidden  rounded-full flex justify-start">
             <svg  class="size-5 rounded-full p-1 border"  xmlns="http://www.w3.org/2000/svg" fill="#F4F7FF" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -14,7 +14,7 @@
 
         <!-- Set a new passwword -->
         <ng-container *ngIf="current_form === 'set_password'">
-            <section class="flex flex-col gap-3" [@slideIn]="animationState" (@slideIn.done)="startTyping()">
+            <section class="flex flex-col gap-3" [@slideIn]="animationState">
                 <h1 class="font-inter text-3xl text-capital-black leading-[130%] font-semibold">Set a New Password</h1>
                 <h2 class="text-[#8692A6] font-inter font-light">Create a strong password tosecure your account</h2>
             </section>
@@ -26,32 +26,32 @@
                 <input-field formControlName="password" (onIconTouch)="togglePasswordVisibility()" [type]="isPasswordVisible? 'text': 'password'" [icon]="isPasswordVisible? 'pi pi-eye-slash' : 'pi pi-eye'" placeholder="Choose a strong password" label="New Password"/>
                 <input-field  formControlName="confirmPassword" (onIconTouch)="togglePasswordVisibility()" type="password" [type]="isPasswordVisible? 'text': 'password'" [icon]="isPasswordVisible? 'pi pi-eye-slash' : 'pi pi-eye'" placeholder="Re-enter password" label="Confirm New Password"/>
             </div>
-            <app-button [showContent]="!isLoading" [disabled]="signInForm.invalid || isLoading" className="bg-capital-green-75 hover:bg-capital-green-100 transition-all" label="Reset Password & Sign In">
+            <!-- <app-button [showContent]="!isLoading" [disabled]="signInForm.invalid || isLoading" className="bg-capital-green-75 hover:bg-capital-green-100 transition-all" label="Reset Password & Sign In">
                 <app-loader />
-            </app-button>
+            </app-button> -->
         </ng-container>
 
 
 
         <!-- Check Your inbox -->
         <ng-container *ngIf="current_form === 'check_inbox'">
-            <section class="flex flex-col gap-3" [@slideIn]="animationState" (@slideIn.done)="startTyping()">
+            <section class="flex flex-col gap-3" [@slideIn]="animationState">
                 <h1 class="font-inter text-3xl text-capital-black leading-[130%] font-semibold">Check Your Inbox!</h1>
-                <h2 class="text-[#8692A6] font-inter font-light">We've sent a password reset Link to example&#64;gmail.com . Click the link to set a new <br/>password</h2>
+                <h2 class="text-[#8692A6] font-inter font-light">We've sent a password reset Link to example&#64;gmail.com . Click the link to set a new password</h2>
             </section>
 
             <hr/>
 
-            <app-button [showContent]="!isLoading" [disabled]="signInForm.invalid || isLoading" className="bg-capital-green-100 hover:bg-capital-green-75 transition-all" label="Resend Link">
+            <!-- <app-button [showContent]="!isLoading" [disabled]="signInForm.invalid || isLoading" className="bg-capital-green-100 hover:bg-capital-green-75 transition-all" label="Resend Link">
                 <app-loader />
-            </app-button>
+            </app-button> -->
         </ng-container>
 
 
 
         <!-- Forgot Password -->
         <ng-container *ngIf="current_form === 'forgot'" > 
-            <section class="flex flex-col gap-3"  [@slideIn]="animationState" (@slideIn.done)="startTyping()">
+            <section class="flex flex-col gap-3"  [@slideIn]="animationState">
                 <h1 class="font-inter text-3xl text-capital-black leading-[130%] font-semibold">Trouble Signing In?</h1>
                 <h2 class="text-[#8692A6] font-inter font-light">No worries! Enter your email, and we'll send you a password reset link</h2>
             </section>
@@ -66,9 +66,9 @@
 
             </div>
 
-            <app-button [showContent]="!isLoading" [disabled]="signInForm.invalid || isLoading" className="bg-capital-green-100 hover:bg-capital-green-75 transition-all" label="Send Reset Link">
+            <!-- <app-button [showContent]="!isLoading" [disabled]="signInForm.invalid || isLoading" className="bg-capital-green-100 hover:bg-capital-green-75 transition-all" label="Send Reset Link">
                 <app-loader />
-            </app-button>
+            </app-button> -->
         </ng-container>
 
 
@@ -82,8 +82,8 @@
             <section class="flex flex-col gap-3">
                 <h1 class="hidden md:block font-inter text-3xl text-capital-black leading-[130%] font-semibold">Sign In to Your Investment Dashboard</h1>
                 <h1 class="md:hidden text-[16px] font-semibold font-inter leading-[20px] mb-4 mt-1">Welcome Back</h1>
-                <h2 class="hidden md:block text-[#8692A6] font-inter font-light">Welcome back! Access your personalized insights, funding opportunities, and <br/>investment tools</h2>
-                <h2 class="md:hidden text-[#8692A6] text-[16px] font-light font-inter leading-[23px]">Access your personalized insights and funding <br/>opportunities</h2>
+                <h2 class="hidden md:block text-[#8692A6] font-inter font-light">Welcome back! Access your personalized insights, funding opportunities, and investment tools</h2>
+                <h2 class="md:hidden text-[#8692A6] text-[16px] font-light font-inter leading-[23px]">Access your personalized insights and funding opportunities</h2>
 
             </section>
 
@@ -107,7 +107,7 @@
                     >Forgot Password?</a>
                 </div>
             </div>
-            <app-button [showContent]="!isLoading" [disabled]="signInForm.invalid || isLoading" className="bg-capital-green-100 hover:bg-capital-green-75 transition-all" label="Sign In & Continue">
+            <app-button [showContent]="!store.isLoading()" [disabled]="signInForm.invalid || store.isLoading()" className="bg-capital-green-100 hover:bg-capital-green-75 transition-all" label="Sign In & Continue">
                 <app-loader />
             </app-button>
 
@@ -121,5 +121,5 @@
     </div>
 </form>
 
-<ng-container *ngIf="signup$ | async"></ng-container>
-<ng-container *ngIf="isLoading$ | async"></ng-container>
+<!-- <ng-container *ngIf="signup$ | async"></ng-container>
+<ng-container *ngIf="isLoading$ | async"></ng-container> -->

@@ -14,6 +14,8 @@ import { Observable, tap } from 'rxjs';
 // import { SignupDetails } from '../../../../core/interfaces/signup.details.interface';
 import { LoaderComponent } from "../../../../components/loader/loader.component";
 import { LoadingService } from '../../../../core/services/loading.service';
+import { AuthStore } from '../../../../features/auth/store/auth.store';
+import { SignInDto } from '../../../../features/auth/interfaces/signin.dto.interface';
 
 @Component({
   selector: 'app-signup',
@@ -48,35 +50,27 @@ export class SignInComponent {
   isPasswordVisible = false;
   isShowSignInForm =false
 
-  signup$ =new Observable();
-  isLoading =false;
-
   //services
+  store =inject(AuthStore);
   private _formBuilder = inject(FormBuilder);
-  // private _authService =inject(AuthService);
-  private _loadingService =inject(LoadingService);
   private _router =inject(Router)
 
-  isLoading$ =this._loadingService.isLoading.pipe(tap(v => {
-    v? this.signInForm.disable(): this.signInForm.enable();
-    this.isLoading =v
-  }))
+  
 
   signInForm = this._formBuilder.group({
     username: ['', [Validators.required]],
     password: ['', Validators.required],
   });
 
-  startTyping() {
-    this.isTyping = true;
-  }
+
 
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
 
-  submitForm() {
-    // this.signup$ =this._authService.signup(this.signInForm.value as SignupDetails)
+  async submitForm() {
+    const values =this.signInForm.value as SignInDto
+    await this.store.signIn(values);
     // this.signIn$ = this._authService.signin(this.signInForm.value as SigninDetails);
   }
 
