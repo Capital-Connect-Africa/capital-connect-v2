@@ -1,7 +1,7 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
-import { ButtonComponent } from "../../../../core/components/button/button.component";
+import { ButtonComponent } from "../../../../components/button/button.component";
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { CommonModule } from '@angular/common';

@@ -7,12 +7,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { InputFieldComponent } from '../../../../core/components/fields/input-field/input-field.component';
-import { ButtonComponent } from '../../../../core/components/button/button.component';
+import { InputFieldComponent } from '../../../../components/input-field/input-field.component';
+import { ButtonComponent } from '../../../../components/button/button.component';
 import { Observable, tap } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
-import { SignupDetails } from '../../../../core/interfaces/signup.details.interface';
-import { LoaderComponent } from "../../../../core/components/loader/loader.component";
+// import { AuthService } from '../../services/auth.service';
+// import { SignupDetails } from '../../../../core/interfaces/signup.details.interface';
+import { LoaderComponent } from "../../../../components/loader/loader.component";
 import { LoadingService } from '../../../../core/services/loading.service';
 
 @Component({
@@ -53,7 +53,7 @@ export class SignInComponent {
 
   //services
   private _formBuilder = inject(FormBuilder);
-  private _authService =inject(AuthService);
+  // private _authService =inject(AuthService);
   private _loadingService =inject(LoadingService);
   private _router =inject(Router)
 
@@ -76,7 +76,7 @@ export class SignInComponent {
   }
 
   submitForm() {
-    this.signup$ =this._authService.signup(this.signInForm.value as SignupDetails)
+    // this.signup$ =this._authService.signup(this.signInForm.value as SignupDetails)
     // this.signIn$ = this._authService.signin(this.signInForm.value as SigninDetails);
   }
 

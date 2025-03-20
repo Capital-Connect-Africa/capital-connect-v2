@@ -1,6 +1,6 @@
-import { USER_ROLES } from "../enums/user.roles.enum";
+import { USER_ROLES } from "../../users/enums/user.roles.enum";
 
-export interface SignupDetails{
+export interface SignupDto{
     username: string;
     password: string;
     firstName: string;

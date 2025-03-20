@@ -1,5 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { LoadingService } from '../../services/loading.service';
+import { LoadingService } from '../../core/services/loading.service';
 import { CommonModule } from '@angular/common';
 import { tap } from 'rxjs';
 

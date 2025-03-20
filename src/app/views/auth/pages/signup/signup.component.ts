@@ -6,14 +6,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { SelectButtonComponent } from '../../../../core/components/select-button/select-button.component';
-import { USER_ROLES } from '../../../../core/enums/user.roles.enum';
-import { InputFieldComponent } from '../../../../core/components/fields/input-field/input-field.component';
-import { ButtonComponent } from '../../../../core/components/button/button.component';
+import { SelectButtonComponent } from '../../../../components/select-button/select-button.component';
+import { USER_ROLES } from '../../../../features/users/enums/user.roles.enum';
+import { InputFieldComponent } from '../../../../components/input-field/input-field.component';
+import { ButtonComponent } from '../../../../components/button/button.component';
 import { Observable, tap } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
-import { SignupDetails } from '../../../../core/interfaces/signup.details.interface';
-import { LoaderComponent } from "../../../../core/components/loader/loader.component";
+import { LoaderComponent } from "../../../../components/loader/loader.component";
 import { LoadingService } from '../../../../core/services/loading.service';
 import { AnimationState } from '../../../../core/enums/animation.state.enum';
 import { slideInFromBottom, slideInFromLeft, slideInFromRight } from '../../../../core/utils/animation.triggers.util'; 
@@ -53,7 +51,6 @@ export class SignupComponent {
   signup$ =new Observable();
   isLoading =false;
   private _formBuilder = inject(FormBuilder);
-  private _authService =inject(AuthService);
   private _loadingService =inject(LoadingService);
   isLoading$ =this._loadingService.isLoading.pipe(tap(v => {
     v? this.signUpForm.disable(): this.signUpForm.enable();
@@ -87,7 +84,7 @@ export class SignupComponent {
       hasAcceptedPrivacyPolicy: hasAcceptedTermsOfUseAndPrivacyPolicy,
       hasAcceptedTerms: hasAcceptedTermsOfUseAndPrivacyPolicy
     }
-    this.signup$ =this._authService.signup({...values, ...userConsent } as SignupDetails)
+    // this.signup$ =this._authService.signup({...values, ...userConsent } as SignupDetails)
   }
 
   next(stride:number =1){
