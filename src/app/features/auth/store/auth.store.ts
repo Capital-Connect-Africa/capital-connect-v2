@@ -5,7 +5,7 @@ import { AuthService } from "../services/auth.service";
 import { SignInDto } from "../interfaces/signin.dto.interface";
 import { ToastService } from "../../../core/services/toast.service";
 import { jwtDecode } from "jwt-decode";
-import { AccessTokenDecodedData } from "../interfaces/access.token.decoded.data.interface";
+import { AccessTokenPayload } from "../interfaces/access.token.payload.interface";
 
 const initialState:AuthState ={
     isLoggedIn: false,
@@ -47,7 +47,7 @@ export const AuthStore =signalStore(
         },
 
         decodeAccessToken(accessToken:string){
-            return jwtDecode(accessToken) as AccessTokenDecodedData;
+            return jwtDecode(accessToken) as AccessTokenPayload;
         },
     }))
 )
