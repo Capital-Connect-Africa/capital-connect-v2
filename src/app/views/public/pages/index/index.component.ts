@@ -26,10 +26,9 @@ export class IndexComponent {
 
   slides =[
     { image: 'assets/img/mobile-banner.png', },
+    { image: 'assets/img/image 5.png', },
     { image: 'assets/img/mobile-banner.png', },
-    { image: 'assets/img/mobile-banner.png', },
-    { image: 'assets/img/mobile-banner.png', },
-    { image: 'assets/img/mobile-banner.png', },
+    { image: 'assets/img/image 5.png', },
   ]
 
   openSignup(){
