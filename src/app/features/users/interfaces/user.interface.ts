@@ -6,7 +6,7 @@ export interface User{
     firstName: string;
     lastName: string;
     password: string;
-    roles: USER_ROLES[];
+    roles: USER_ROLES | USER_ROLES[];
     referralCode: string;
     resetPasswordToken: string;
     resetPasswordExpires: Date;
