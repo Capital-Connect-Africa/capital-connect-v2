@@ -18,18 +18,18 @@ export const appConfig: ApplicationConfig = {
     MessageService, ConfirmationService,
     provideHttpClient(withInterceptors([LoadingInterceptor, AuthInterceptor, HttpErrorInterceptor])),
     providePrimeNG({
-      ripple: true,
-      theme: {
-        preset: Lara,
-        options: {
-          prefix: 'p',
-          darkModeSelector: 'light',
-          cssLayer: {
-            name: 'primeng',
-            order: 'tailwind-base, primeng, tailwind-utilities',
-          },
+        ripple: true,
+        theme: {
+            preset: Lara,
+            options: {
+                prefix: 'p',
+                darkModeSelector: 'light',
+                cssLayer: {
+                    name: 'primeng',
+                    order: 'tailwind-base, primeng, tailwind-utilities',
+                },
+            },
         },
-      },
     }),
-  ],
+],
 };

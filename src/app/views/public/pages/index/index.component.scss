@@ -1,0 +1,37 @@
+:host ::ng-deep .p-carousel {
+    .p-carousel-content-container {
+      position: relative;
+      height: 100%;
+      .p-carousel-content {
+        height: 100%;
+        .p-carousel-viewport {
+          .p-carousel-item-list {
+            height: 100% !important;
+          }
+        }
+      }
+      .p-carousel-indicator-list {
+        position: absolute;
+        bottom: 8%;
+        width: max-content;
+        justify-content: center;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-wrap: nowrap;
+        .p-carousel-indicator {
+          width: 100%;
+          .p-carousel-indicator-button {
+            width: 8px;
+            height: 6px;
+            border-radius: 40px;
+            background-color: #E9E9E9;
+          }
+        }
+        .p-carousel-indicator-active .p-carousel-indicator-button {
+            width: 20px;
+            background-color: #FEEEC1 !important;
+        }
+      }
+    }
+  }
+  

@@ -1,18 +1,37 @@
-import { map } from 'rxjs';
+import { lastValueFrom, map } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { User } from '../../../core/models/user.model';
 import { BaseHttpService } from '../../../core/services/http/base.http.service';
-import { SignupDetails } from '../../../core/interfaces/signup.details.interface';
+import { User } from '../../users/interfaces/user.interface';
+import { SignInDto } from '../interfaces/signin.dto.interface';
+import { SignUpDto } from '../interfaces/signup.dto.interface';
+import { HttpParams } from '@angular/common/http';
+import { ResendEmailVerificationDto, ResendEmailVerificationResponse } from '../interfaces/resend.verification.email.dto.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends BaseHttpService<User> {
   BASE_URL = '/auth';
 
-  signup(payload: SignupDetails) {
-    return this.create(`${this.BASE_URL}/signup`, payload).pipe(
+  async signUp(payload: SignUpDto) {
+    return lastValueFrom (this.create(`${this.BASE_URL}/signup`, payload).pipe(
       map((res) => {
-        debugger;
+        return res
       })
-    );
+    ));
+  }
+
+  signIn(payload: SignInDto): Promise<{access_token: string}>{
+    return lastValueFrom (this.create(`${this.BASE_URL}/login`, payload).pipe(
+      map((res:any) => {
+        return res as {access_token: string}
+      })
+    ));
+  }
+
+  resendEmailVerificationToken(payload: ResendEmailVerificationDto){
+    return lastValueFrom (this.create(`${this.BASE_URL}/resend-verification-email`, payload as any).pipe(
+      map((res:any) => {
+        return res as ResendEmailVerificationResponse;
+      })
+    ));
   }
 }

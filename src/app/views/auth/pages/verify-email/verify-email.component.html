@@ -1,0 +1,17 @@
+<form @slideInFromBottom class="h-full w-full lg:w-4/5 mx-auto flex items-center justify-center overflow-hidden" [formGroup]="emailVerificationForm" (ngSubmit)="resendEmailVerificationToken()">
+    <div class="flex flex-col gap-8">
+        <button (click)="back()" type="button" class="lg:hover:bg-capital-yellow-light transition-all md:border-2 lg:border-capital-yellow-75 bg-[#F4F7FF] mdbg-transparent h-[24px] w-[24px] md:h-[34px] md:w-[34px] rounded-full flex items-center justify-center">
+            <i class="hidden md:inline-block pi pi-arrow-left font-light text-capital-yellow-75 md:text-xs"></i>
+            <i class="sm:inline-block md:hidden pi pi-chevron-left text-[10px] font-light text-[#292D32"></i>
+        </button>
+        <section class="flex flex-col gap-3">
+            <h1 class="font-inter text-[14px] lg:text-2xl text-capital-black leading-[130%] font-semibold">Verify Your Email</h1>
+            <p class="text-[#8692A6] font-inter text-base lg:text-sm font-light">Please click the verification link we sent to <span *ngIf="!store.verificationEmail()">your email</span> <span class="font-bold lowercase" *ngIf="store.verificationEmail()">{{store.verificationEmail()}}</span>. Don't see the email? Check your spam folder or resend it.</p>
+        </section>
+        <input-field formControlName="email" type="email" placeholder="Enter Email" label="Email"/>
+        <app-button  [showContent]="!authStore.isLoading()" [disabled]="emailVerificationForm.invalid || store.isLoading()" className="bg-capital-green-75 hover:bg-capital-green-100 transition-all" label="Resend!">
+            <app-loader />
+        </app-button>
+    </div>
+    
+</form>
