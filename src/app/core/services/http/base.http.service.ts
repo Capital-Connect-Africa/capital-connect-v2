@@ -77,21 +77,20 @@ export class BaseHttpService<T> implements CrudMethods<T> {
     headers?: HttpHeaders;
   }) {
     let httpParams = new HttpParams();
-    let httpHeaders = new HttpHeaders();
-    const { params, headers } = options;
-    if (params) {
-      Object.entries(params).forEach(([key, value]) => {
-        if (value! == null && value !== undefined)
-          httpParams = httpParams.set(key, value);
-      });
-    }
-    httpHeaders = new HttpHeaders().set(
+    let httpHeaders = new HttpHeaders().set(
       'Content-Type',
       'application/json; charset=utf-8'
     );
+    const { params, headers } = options;
+    if (params) {
+      Object.entries(params).forEach(([key, value]) => {
+        if (value != null && value != undefined)
+          httpParams = httpParams.set(key, value);
+      });
+    }
     if (headers) {
       Object.entries(headers).forEach(([key, value]) => {
-        if (value! == null && value !== undefined)
+        if (value != null && value != undefined)
           httpHeaders = httpHeaders.set(key, value);
       });
     }
