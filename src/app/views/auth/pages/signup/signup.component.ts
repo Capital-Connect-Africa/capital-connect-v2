@@ -1,4 +1,4 @@
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
@@ -10,11 +10,12 @@ import { SelectButtonComponent } from '../../../../components/select-button/sele
 import { USER_ROLES } from '../../../../features/users/enums/user.roles.enum';
 import { InputFieldComponent } from '../../../../components/input-field/input-field.component';
 import { ButtonComponent } from '../../../../components/button/button.component';
-import { Observable, tap } from 'rxjs';
 import { LoaderComponent } from "../../../../components/loader/loader.component";
-import { LoadingService } from '../../../../core/services/loading.service';
 import { AnimationState } from '../../../../core/enums/animation.state.enum';
 import { slideInFromBottom, slideInFromLeft, slideInFromRight } from '../../../../core/utils/animation.triggers.util'; 
+import { AuthStore } from '../../../../features/auth/store/auth.store';
+import { SignUpDto } from '../../../../features/auth/interfaces/signup.dto.interface';
+import { UsersStore } from '../../../../features/users/store/users.store';
 
 @Component({
   selector: 'app-signup',
@@ -30,39 +31,32 @@ import { slideInFromBottom, slideInFromLeft, slideInFromRight } from '../../../.
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
   animations: [
-    slideInFromRight, 
     slideInFromBottom, 
-    slideInFromLeft
+    slideInFromLeft,
+    slideInFromRight
   ],
 })
 
 export class SignupComponent {
-  isTyping = false;
   animationStates =AnimationState
   animationState =AnimationState.BOTTOM;
   Roles = USER_ROLES;
   step = 0;
-  helperText =
-    'To begin this journey, tell us what type of account you’d be opening.';
+  helperText = 'To begin this journey, tell us what type of account you’d be opening.';
   isPasswordVisible = false;
-  startTyping() {
-    this.isTyping = true;
-  }
-  signup$ =new Observable();
-  isLoading =false;
+
+  store =inject(AuthStore);
+  userStore =inject(UsersStore)
+  private _router =inject(Router);
   private _formBuilder = inject(FormBuilder);
-  private _loadingService =inject(LoadingService);
-  isLoading$ =this._loadingService.isLoading.pipe(tap(v => {
-    v? this.signUpForm.disable(): this.signUpForm.enable();
-    this.isLoading =v
-  }))
+
 
   signUpForm = this._formBuilder.group({
-    password: ['', Validators.required],
-    lastName: ['', Validators.required],
-    firstName: ['', Validators.required],
-    accountType: ['', Validators.required],
-    hasAcceptedTermsOfUseAndPrivacyPolicy: [false, Validators.requiredTrue],
+    password: ['', [Validators.required]],
+    lastName: ['',[ Validators.required, Validators.pattern(/^[a-zA-Z\s\-]+$/)]],
+    firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s\-]+$/)]],
+    accountType: ['',[ Validators.required]],
+    hasAcceptedTermsOfUseAndPrivacyPolicy: [false,[ Validators.requiredTrue]],
     username: ['', [Validators.required, Validators.email]],
   });
 
@@ -75,16 +69,19 @@ export class SignupComponent {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
 
-  submitForm() {
+  async submitForm() {
     if(!this.signUpForm.valid) return;
     const values =this.signUpForm.value
-    const hasAcceptedTermsOfUseAndPrivacyPolicy =values.hasAcceptedTermsOfUseAndPrivacyPolicy
-    delete values.hasAcceptedTermsOfUseAndPrivacyPolicy
+    const hasAcceptedTermsOfUseAndPrivacyPolicy =values.hasAcceptedTermsOfUseAndPrivacyPolicy;
+    const roles =values.accountType as USER_ROLES
+    delete values.accountType;
+    delete values.hasAcceptedTermsOfUseAndPrivacyPolicy;
     const userConsent ={
       hasAcceptedPrivacyPolicy: hasAcceptedTermsOfUseAndPrivacyPolicy,
       hasAcceptedTerms: hasAcceptedTermsOfUseAndPrivacyPolicy
     }
-    // this.signup$ =this._authService.signup({...values, ...userConsent } as SignupDetails)
+    await this.store.signUp({...values, ...userConsent, roles} as SignUpDto);
+    this._router.navigateByUrl(`/auth/verify-email?token=${this.userStore.currentUser()?.emailVerificationToken}`)
   }
 
   next(stride:number =1){

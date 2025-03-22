@@ -1,12 +1,12 @@
 <form class="h-full w-full flex items-center justify-center overflow-hidden" [formGroup]="signUpForm" (ngSubmit)="submitForm()">
-    <div class="flex flex-col gap-8 lg:gap-4 w-[95%] lg:w-[80%]"  [@slideInFromBottom]="animationState === animationStates.BOTTOM">
+    <div class="flex flex-col gap-6 lg:gap-4 w-[95%] lg:w-[80%]"  [@slideInFromBottom]="animationState === animationStates.BOTTOM">
     <div [@slideInFromLeft]="animationState === animationStates.LEFT" class="contents">
         <ng-container *ngIf="step ===0 || !signUpForm.get('accountType')?.value">
             <section class="flex flex-col gap-3">
                 <h1 class="font-inter text-3xl text-capital-black leading-[130%] font-semibold">Welcome!</h1>
                 <h2 class="text-capital-gray-dark text-base font-inter font-normal">{{helperText}}</h2>
             </section>
-            <div class="flex flex-col gap-[30px]">
+            <div class="flex flex-col gap-[20px]">
                 <select-button icon="pi pi-briefcase" [active]="signUpForm.get('accountType')?.value === Roles.USER" placeholder="Personal account to manage all your activities" value="user" label="Business" (onSelect)="handleRoleSelection($event)"/>
                 <select-button icon="pi pi-money-bill" [active]="signUpForm.get('accountType')?.value === Roles.INVESTOR" placeholder="Personal account to manage all your activities" value="investor" label="Investor" (onSelect)="handleRoleSelection($event)"/>
                 <select-button icon="pi pi-user" [active]="signUpForm.get('accountType')?.value === Roles.ADVISOR" placeholder="Personal account to manage all your activities" value="advisor" label="Advisor" (onSelect)="handleRoleSelection($event)"/>
@@ -18,7 +18,7 @@
     </div>
     <div [@slideInFromRight]="animationState === animationStates.RIGHT" class="contents">
         <ng-container *ngIf="step >0 && signUpForm.get('accountType')?.value">
-            <div class="flex flex-col gap-8">
+            <div class="flex flex-col gap-4">
                 <button (click)="next(-1)" type="button" class="lg:hover:bg-capital-yellow-light transition-all md:border-2 lg:border-capital-yellow-75 bg-[#F4F7FF] mdbg-transparent h-[24px] w-[24px] md:h-[34px] md:w-[34px] rounded-full flex items-center justify-center">
                     <i class="hidden md:inline-block pi pi-arrow-left font-light text-capital-yellow-75 md:text-xs"></i>
                 <i class="sm:inline-block md:hidden pi pi-chevron-left text-[10px] font-light text-[#292D32"></i>
@@ -27,7 +27,7 @@
                 <p class="text-[#8692A6] font-inter font-light hidden lg:block text-sm">Already have an account? <a routerLink="/auth"  class="text-capital-green-75 font-medium hover:underline decoration-dotted underline-offset-4">Sign In</a></p>
             </div>
             <section class="flex flex-col gap-3">
-                <h1 class="font-inter text-base lg:text-2xl xl:text-3xl text-capital-black leading-[130%] font-semibold">Start Your Investment Journey!</h1>
+                <h1 class="font-inter text-base lg:text-2xl text-capital-black leading-[130%] font-semibold">Start Your Investment Journey!</h1>
                 <h2 class="text-[#8692A6] font-inter text-sm font-normal pb-4">Create your account for a personalized investment dashboard, funding opportunities, and expert insights!</h2>
             </section>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-3 lg:gap-y-4">
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="flex flex-col gap-2">
-                <app-button [showContent]="!isLoading" [disabled]="signUpForm.invalid || isLoading" className="bg-capital-green-75 hover:bg-capital-green-100 transition-all" label="Sign Up & Unlock Insights!">
+                <app-button [showContent]="!store.isLoading()" [disabled]="signUpForm.invalid || store.isLoading()" className="bg-capital-green-75 hover:bg-capital-green-100 transition-all" label="Sign Up & Unlock Insights!">
                     <app-loader />
                 </app-button>
                 <p class="text-[#8692A6] font-inter lg:hidden font-light text-xs">Already have an account? <a routerLink="/auth"  class="text-capital-green-75 font-medium hover:underline decoration-dotted underline-offset-4">Sign In</a></p>
@@ -58,6 +58,3 @@
         </div>
     </div>
 </form>
-
-<ng-container *ngIf="signup$ | async"></ng-container>
-<ng-container *ngIf="isLoading$ | async"></ng-container>
