@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -18,5 +18,10 @@ export class ButtonComponent {
 
   handleClick() {
     this.onClick.emit();
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+    if(changes['disabled'] && changes['disabled'].currentValue)
+      this.disabled =changes['disabled'].currentValue;
   }
 }
