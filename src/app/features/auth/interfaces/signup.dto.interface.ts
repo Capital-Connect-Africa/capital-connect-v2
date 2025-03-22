@@ -5,7 +5,7 @@ export interface SignUpDto{
     password: string;
     firstName: string;
     lastName: string;
-    roles: USER_ROLES[];
+    roles: USER_ROLES;
     referralCode?: string;
     hasAcceptedTerms: boolean;
     hasAcceptedPrivacyPolicy: boolean;
