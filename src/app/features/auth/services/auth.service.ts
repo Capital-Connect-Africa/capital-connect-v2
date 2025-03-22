@@ -4,6 +4,8 @@ import { BaseHttpService } from '../../../core/services/http/base.http.service';
 import { User } from '../../users/interfaces/user.interface';
 import { SignInDto } from '../interfaces/signin.dto.interface';
 import { SignUpDto } from '../interfaces/signup.dto.interface';
+import { HttpParams } from '@angular/common/http';
+import { ResendEmailVerificationDto, ResendEmailVerificationResponse } from '../interfaces/resend.verification.email.dto.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends BaseHttpService<User> {
@@ -21,6 +23,14 @@ export class AuthService extends BaseHttpService<User> {
     return lastValueFrom (this.create(`${this.BASE_URL}/login`, payload).pipe(
       map((res:any) => {
         return res as {access_token: string}
+      })
+    ));
+  }
+
+  resendEmailVerificationToken(payload: ResendEmailVerificationDto){
+    return lastValueFrom (this.create(`${this.BASE_URL}/resend-verification-email`, payload as any).pipe(
+      map((res:any) => {
+        return res as ResendEmailVerificationResponse;
       })
     ));
   }
