@@ -48,11 +48,9 @@ export class SignInComponent {
   private _formBuilder = inject(FormBuilder);
   private _router =inject(Router)
 
-  
-
   signInForm = this._formBuilder.group({
     username: ['', [Validators.required]],
-    password: ['', Validators.required],
+    password: ['', [Validators.required]],
   });
 
 
