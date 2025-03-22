@@ -1,4 +1,4 @@
-import { Session } from "../../../core/interfaces/session.interface";
+import { Session } from "./session.interface";
 
 export interface AuthState {
     isLoading: boolean;

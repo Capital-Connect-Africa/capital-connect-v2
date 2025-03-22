@@ -10,7 +10,7 @@ import { SignUpDto } from "../interfaces/signup.dto.interface";
 import { User } from "../../users/interfaces/user.interface";
 import { UsersStore } from "../../users/store/users.store";
 import { ResendEmailVerificationDto } from "../interfaces/resend.verification.email.dto.interface";
-import { Session } from "../../../core/interfaces/session.interface";
+import { Session } from "../interfaces/session.interface";
 
 const initialState:AuthState ={
     session: null,
