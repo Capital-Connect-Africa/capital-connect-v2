@@ -2,18 +2,10 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
-import {
-  FormBuilder,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder,  ReactiveFormsModule, Validators, } from '@angular/forms';
 import { InputFieldComponent } from '../../../../components/input-field/input-field.component';
 import { ButtonComponent } from '../../../../components/button/button.component';
-import { Observable, tap } from 'rxjs';
-// import { AuthService } from '../../services/auth.service';
-// import { SignupDetails } from '../../../../core/interfaces/signup.details.interface';
 import { LoaderComponent } from "../../../../components/loader/loader.component";
-import { LoadingService } from '../../../../core/services/loading.service';
 import { AuthStore } from '../../../../features/auth/store/auth.store';
 import { SignInDto } from '../../../../features/auth/interfaces/signin.dto.interface';
 
@@ -43,6 +35,7 @@ import { SignInDto } from '../../../../features/auth/interfaces/signin.dto.inter
 })
 
 export class SignInComponent {
+  
   //booleans
   current_form: string = 'login';
   isTyping = false;
@@ -71,7 +64,6 @@ export class SignInComponent {
   async submitForm() {
     const values =this.signInForm.value as SignInDto
     await this.store.signIn(values);
-    // this.signIn$ = this._authService.signin(this.signInForm.value as SigninDetails);
   }
 
   setCurrentForm(form: string) {
