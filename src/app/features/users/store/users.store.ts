@@ -4,6 +4,8 @@ import { UserService } from "../services/users.service";
 import { ToastService } from "../../../core/services/toast.service";
 import { patchState, signalStore, withMethods, withState} from "@ngrx/signals";
 import { User } from "../interfaces/user.interface";
+import { ErrorStore } from "../../../core/store/http.errors.store";
+import { objTostr } from "../../../core/utils/object.to.string.util";
 
 const initialState:UserState ={
     isLoading: false,
@@ -14,9 +16,9 @@ const initialState:UserState ={
 export const UsersStore =signalStore(
     {providedIn: 'root'},
     withState(initialState),
-    withMethods((store, userService =inject(UserService), toast =inject(ToastService)) =>({
+    withMethods((store, userService =inject(UserService), errorStore =inject(ErrorStore), toast =inject(ToastService)) =>({
 
-        setCurrentUser(user: User){
+        setCurrentUser(user: User | undefined){
             patchState(store, {currentUser: user})
         },
 
@@ -34,14 +36,26 @@ export const UsersStore =signalStore(
                     severity: 'success',
                     position: 'bottom-right'
                 })
-                patchState(store, { isLoading: false })
 
-            } catch (error:any) {
+            } catch (e:any) {
+                const err =errorStore.error()
+                toast.show({
+                    summary: `${err? 'Verification': ''}`,
+                    details: objTostr(err?.message ?? e.message),
+                    severity: 'error',
+                    position: 'bottom-right'
+                })
+            }finally{
                 patchState(store, { isLoading: false })
             }
         },
 
-        
+        clear(){
+            patchState(store, {
+                currentUser: undefined,
+                verificationEmail: undefined,
+            })
+        }
     }))
 
 )
