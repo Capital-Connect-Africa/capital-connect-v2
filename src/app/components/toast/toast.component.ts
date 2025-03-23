@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Toast, ToastClasses, ToastModule } from 'primeng/toast';
+import { ErrorStore } from '../../core/store/http.errors.store';
 
 @Component({
   selector: 'app-toast',
@@ -8,5 +9,9 @@ import { Toast, ToastClasses, ToastModule } from 'primeng/toast';
   styleUrl: './toast.component.scss'
 })
 export class ToastComponent {
+  errorStore =inject(ErrorStore)
 
+  handleClose(){
+    this.errorStore.setError(undefined)
+  }
 }
