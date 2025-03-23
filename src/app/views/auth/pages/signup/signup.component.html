@@ -50,7 +50,7 @@
             </div>
             <div class="flex flex-col gap-2">
                 <app-button [showContent]="!store.isLoading()" [disabled]="signUpForm.invalid || store.isLoading()" className="bg-capital-green-75 hover:bg-capital-green-100 transition-all" label="Sign Up & Unlock Insights!">
-                    <app-loader />
+                    <app-loader [isLoading]="store.isLoading()" />
                 </app-button>
                 <p class="text-[#8692A6] font-inter lg:hidden font-light text-xs">Already have an account? <a routerLink="/auth"  class="text-capital-green-75 font-medium hover:underline decoration-dotted underline-offset-4">Sign In</a></p>
             </div>

@@ -81,7 +81,10 @@ export class SignupComponent {
       hasAcceptedTerms: hasAcceptedTermsOfUseAndPrivacyPolicy
     }
     await this.store.signUp({...values, ...userConsent, roles} as SignUpDto);
-    this._router.navigateByUrl(`/auth/verify-email?token=${this.userStore.currentUser()?.emailVerificationToken}`)
+    if(this.userStore.currentUser()){
+      this.signUpForm.reset();
+      this._router.navigateByUrl(`/auth/verify-email`)
+    }
   }
 
   next(stride:number =1){

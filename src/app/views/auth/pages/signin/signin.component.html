@@ -107,8 +107,9 @@
                     >Forgot Password?</a>
                 </div>
             </div>
+            
             <app-button [showContent]="!store.isLoading()" [disabled]="signInForm.invalid || store.isLoading()" className="bg-capital-green-100 hover:bg-capital-green-75 transition-all" label="Sign In & Continue">
-                <app-loader />
+                <app-loader [isLoading]="store.isLoading()"/>
             </app-button>
 
             <div class="md:hidden flex items-center gap-2">

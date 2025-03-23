@@ -19,9 +19,4 @@ export class ButtonComponent {
   handleClick() {
     this.onClick.emit();
   }
-
-  ngOnChanges(changes: SimpleChanges){
-    if(changes['disabled'] && changes['disabled'].currentValue)
-      this.disabled =changes['disabled'].currentValue;
-  }
 }

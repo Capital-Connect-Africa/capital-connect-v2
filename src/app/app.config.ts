@@ -5,7 +5,6 @@ import { provideRouter } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { HttpErrorInterceptor } from './core/interceptors/http.error.interceptor';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -16,7 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     MessageService, ConfirmationService,
-    provideHttpClient(withInterceptors([LoadingInterceptor, AuthInterceptor, HttpErrorInterceptor])),
+    provideHttpClient(withInterceptors([AuthInterceptor, HttpErrorInterceptor])),
     providePrimeNG({
         ripple: true,
         theme: {
