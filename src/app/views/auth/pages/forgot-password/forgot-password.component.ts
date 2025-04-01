@@ -1,8 +1,8 @@
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { FormBuilder,  ReactiveFormsModule, Validators, } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators, } from '@angular/forms';
 import { InputFieldComponent } from '../../../../components/input-field/input-field.component';
 import { ButtonComponent } from '../../../../components/button/button.component';
 import { LoaderComponent } from "../../../../components/loader/loader.component";
@@ -11,9 +11,15 @@ import { SignInDto } from '../../../../features/auth/interfaces/signin.dto.inter
 
 @Component({
   selector: 'app-signup',
-  imports: [ RouterLink,CommonModule,ReactiveFormsModule,InputFieldComponent,ButtonComponent,LoaderComponent],
-  templateUrl: './signin.component.html',
-  styleUrl: './signin.component.scss',
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    InputFieldComponent,
+    ButtonComponent,
+    LoaderComponent,
+  ],
+  templateUrl: './forgot-password.component.html',
+  styleUrl: './forgot-password.component.scss',
   animations: [
     trigger('slideIn', [
       transition(':enter', [
@@ -27,22 +33,22 @@ import { SignInDto } from '../../../../features/auth/interfaces/signin.dto.inter
   ],
 })
 
-export class SignInComponent {
+export class ForgotPasswordComponent {
+
   //booleans
-  current_form: string = 'login';
+  current_form: string = 'forgot';
   isTyping = false;
   animationState = true;
   isPasswordVisible = false;
-  isShowSignInForm =false
+  isShowSignInForm = false
 
   //services
-  store =inject(AuthStore);
+  store = inject(AuthStore);
   private _formBuilder = inject(FormBuilder);
-  private _router =inject(Router)
+  private _router = inject(Router)
 
-  signInForm = this._formBuilder.group({
-    username: ['', [Validators.required]],
-    password: ['', [Validators.required]],
+  forgotPassForm = this._formBuilder.group({
+    email: ['', [Validators.required]],
   });
 
 
@@ -51,12 +57,25 @@ export class SignInComponent {
   }
 
   async submitForm() {
-    const values =this.signInForm.value as SignInDto
+    const values = this.forgotPassForm.value as SignInDto
     await this.store.signIn(values);
   }
 
-  authBack(){
-      this._router.navigateByUrl('/')
+  setCurrentForm(form: string) {
+    this.current_form = form;
   }
+
+  authBack() {
+    if (this.current_form === 'forgot') {
+      this.setCurrentForm('login')
+    } else if (this.current_form === 'check_inbox') {
+      this.setCurrentForm('forgot')
+    } else if (this.current_form === 'set_password') {
+      this.setCurrentForm('check_inbox')
+    } else {
+      this._router.navigateByUrl('/')
+    }
+  }
+
 
 }
