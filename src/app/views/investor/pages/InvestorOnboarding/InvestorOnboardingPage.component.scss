@@ -1,0 +1,8 @@
+:host ::ng-deep .custom-progressbar {
+    @apply bg-gray-200 rounded-lg h-4; /* Background and height */
+  }
+  
+  :host ::ng-deep .custom-progressbar .p-progressbar-value {
+    @apply bg-blue-500 rounded-lg h-full transition-all duration-300; /* Progress fill */
+  }
+  

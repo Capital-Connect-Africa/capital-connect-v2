@@ -38,6 +38,18 @@ export class BaseHttpService<T> implements CrudMethods<T> {
       .get<T[]>(`${this.BASE_PATH}${path}`, options)
       .pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
   }
+
+
+  get(path: string, params?: QueryParams, headers?: HttpHeaders): Observable<T[]> {
+    const options = this.buildOptions({ headers, params });
+    return this._httpClient
+      .get<T[]>(`${this.BASE_PATH}${path}`, options)
+      .pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
+  }
+
+
+
+
   getById(path: string, id: number, headers?: HttpHeaders): Observable<T> {
     const options = this.buildOptions({ headers });
     return this._httpClient
