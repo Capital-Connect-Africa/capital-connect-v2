@@ -13,9 +13,9 @@ import { CommonModule } from '@angular/common';
 
 export class OnboardingLayoutComponent {
   steps: Step[] =[
-    {label: 'Signup'},
-    {label: 'Business Information', isActive: true},
-    {label: 'Investor Preparedness'},
-    {label: 'Investor/Funder Eligibility'},
+    {label: 'Signup', done: true, },
+    {label: 'Business Information', isActive: true, done: false,},
+    {label: 'Investor Preparedness', done: false,},
+    {label: 'Investor/Funder Eligibility', done: false,},
   ];
 }
