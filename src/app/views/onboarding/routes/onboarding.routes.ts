@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: 'business', loadComponent: () => import('../pages/company-information/company-information.component').then(c => c.CompanyInformationComponent)},
-  { path: 'business/company-details', loadComponent: () => import('../pages/company-information/company-information.component').then(c => c.CompanyInformationComponent)},
+  { path: 'business', 
+      children: [
+      { path: 'organization-setup', loadComponent: () =>import('../pages/business/organization/landing/landing.component').then(c =>c.LandingComponent) }
+  ] },
 ];
 
 @NgModule({
