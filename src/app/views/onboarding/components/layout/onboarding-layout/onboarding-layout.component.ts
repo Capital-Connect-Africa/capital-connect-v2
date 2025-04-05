@@ -18,5 +18,6 @@ export class OnboardingLayoutComponent {
     {label: 'Investor Preparedness', done: false,},
     {label: 'Investor/Funder Eligibility', done: false,},
     {label: 'Business Information', done: false,},
+    {label: 'Impact Assessment', done: false,},
   ];
 }
