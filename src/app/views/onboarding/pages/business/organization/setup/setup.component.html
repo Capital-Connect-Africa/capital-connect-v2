@@ -1,0 +1,14 @@
+<div class="bg-[#F3FFFC] h-full w-full flex justify-center items-center">
+    <div class="bg-white w-2/3 px-8 py-4 border rounded-md border-[#DDE2E5] flex flex-col gap-4">
+        <div class="flex flex-col gap-2">
+            <p class="text-right text-xs font-normal font-inter">Step {{steps.indexOf(currentStep)+1}} of {{steps.length}}</p>
+            <ul class="w-full grid overflow-hidden rounded h-[4px] bg-capital-yellow-25"
+                [ngStyle]="{ 'grid-template-columns': 'repeat(' + steps.length + ', 1fr)' }">
+                <li *ngFor="let step of steps" class="h-full rounded w-full" [ngClass]="{'bg-capital-yellow-75': step === currentStep, 'bg-transparent': step !== currentStep}" >
+    
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
