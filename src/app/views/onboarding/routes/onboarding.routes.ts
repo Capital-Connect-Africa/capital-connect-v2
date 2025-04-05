@@ -5,7 +5,20 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: 'business', 
       children: [
-      { path: 'organization-setup', loadComponent: () =>import('../pages/business/organization/landing/landing.component').then(c =>c.LandingComponent) }
+      { 
+        path: 'organization-setup', 
+        children: [
+        {
+          path: '',
+          pathMatch: 'full',
+          loadComponent: () =>import('../pages/business/organization/landing/landing.component').then(c =>c.LandingComponent), 
+        },
+          {
+            path: ':step',
+            loadComponent: () =>import('../pages/business/organization/setup/setup.component').then(c =>c.SetupComponent), 
+          }
+        ]
+      }
   ] },
 ];
 
