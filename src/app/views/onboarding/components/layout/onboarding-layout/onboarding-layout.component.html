@@ -1,8 +1,11 @@
-<main class="w-full min-h-svh grid grid-cols-[auto_300px] bg-white">
+<main class="w-full min-h-svh grid lg:grid-cols-[auto_300px] bg-white">
+    <section class="lg:hidden">
+
+    </section>
     <section>
         <router-outlet />
     </section>
-    <section class="h-full w-full">
+    <section class="hidden h-full w-full lg:block">
         <div class="fixed  w-full flex flex-col bg-capital-green-75 h-full pt-14 px-[27px] gap-10">
             <div>
                 <img src="assets/img/logo-white.png" class="w-[105px] block" />
