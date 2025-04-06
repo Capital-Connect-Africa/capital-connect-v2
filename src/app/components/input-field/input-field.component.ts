@@ -29,6 +29,7 @@ export class InputFieldComponent implements ControlValueAccessor {
   @Input({ required: true }) formControlName: string = '';
   @Input() type: 'number' | 'text' | 'password' | 'email' = 'text';
   @Input() className: string = '';
+  @Input() labelClassName: string =''
   @Input() icon!: string;
   @Input() disabled:boolean =false;
   @Output() onIconTouch = new EventEmitter();
