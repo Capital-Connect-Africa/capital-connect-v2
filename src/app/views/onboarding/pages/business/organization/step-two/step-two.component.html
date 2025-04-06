@@ -6,7 +6,7 @@
     <select-field [options]="['Kenya', 'Uganda']" labelClassName="text-capital-green-50" formControlName="segment" placeholder="select option" label="Which segments belong to the above sub sector?" />
     <select-field [options]="['Kenya', 'Uganda']" labelClassName="text-capital-green-50" formControlName="products" placeholder="select option"  label="What products and services are you offering?" />
     <div class="col-span-2 flex flex-col-reverse md:grid grid-cols-2 lg:items-center gap-4 lg:gap-8">
-        <app-button type="button" label="Previous Step" [showLeftArrow]="true" [showArrow]="false" className="text-capital-yellow-100 md:!py-[10px] !text-sm border hover:bg-capital-yellow-100 border-capital-yellow-100 hover:text-white hover:border-transparent transition-all" />
+        <app-button (onClick)="back()" type="button" label="Previous Step" [showLeftArrow]="true" [showArrow]="false" className="text-capital-yellow-100 md:!py-[10px] !text-sm border hover:bg-capital-yellow-100 border-capital-yellow-100 hover:text-white hover:border-transparent transition-all" />
         <app-button type="submit" [disabled]="formGroup.invalid" label="Save & go next" className="bg-capital-green-75 md:!py-[10px] !text-sm border border-transparent hover:bg-transparent hover:!text-capital-green-75 hover:border-capital-green-75 transition-all" />
     </div>
 </form>

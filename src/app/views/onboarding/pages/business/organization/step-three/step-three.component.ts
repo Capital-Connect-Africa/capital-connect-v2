@@ -1,5 +1,5 @@
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { Component, inject } from '@angular/core';
 import { ButtonComponent } from '../../../../../../components/button/button.component';
 
@@ -11,7 +11,8 @@ import { ButtonComponent } from '../../../../../../components/button/button.comp
 })
 export class StepThreeComponent {
 
-  private _router =inject(Router)
+  private _router =inject(Router);
+
   isUploading =false;
 
   selectedFile: File | null = null;
@@ -24,13 +25,13 @@ export class StepThreeComponent {
 
   uploadLogo(){
     if(this.selectedFile){
-      this.isUploading =true
+      this.isUploading =true;
       this._router.navigateByUrl('/onboarding/business/organization-setup/success')
     }
   }
 
   back(){
-    this._router.navigateByUrl('/onboarding/business/organization-setup/step-two')
+    this._router.navigateByUrl('/onboarding/business/organization-setup/step-two');
   }
 
 
