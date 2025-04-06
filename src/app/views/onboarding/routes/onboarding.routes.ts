@@ -14,6 +14,10 @@ const routes: Routes = [
           loadComponent: () =>import('../pages/business/organization/landing/landing.component').then(c =>c.LandingComponent), 
         },
           {
+            path: 'success',
+            loadComponent: () =>import('../pages/business/organization/success/success.component').then(c =>c.SuccessComponent), 
+          },
+          {
             path: ':step',
             loadComponent: () =>import('../pages/business/organization/setup/setup.component').then(c =>c.SetupComponent), 
           }
