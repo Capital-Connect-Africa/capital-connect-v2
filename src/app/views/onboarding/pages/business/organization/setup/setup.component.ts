@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { STEP } from '../../../../../../features/onboarding/enums/steps.enum';
 import { CommonModule } from '@angular/common';
+import { StepOneComponent } from "../step-one/step-one.component";
 
 @Component({
   selector: 'app-setup',
-  imports: [CommonModule],
+  imports: [CommonModule, StepOneComponent],
   templateUrl: './setup.component.html',
   styleUrl: './setup.component.scss'
 })
