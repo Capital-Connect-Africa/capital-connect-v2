@@ -1,12 +1,12 @@
-<form class="w-full flex flex-col lg:grid lg:grid-cols-2 gap-x-8 gap-y-6 lg:items-center">
-    <select-field labelClassName="text-capital-green-50" formControlName="" placeholder="select option" label="What is the name of your business?" />
-    <select-field labelClassName="text-capital-green-50" formControlName="" placeholder="select option" label="What is your business country of operation?" />
-    <select-field labelClassName="text-capital-green-50" formControlName="" placeholder="select option" label="In which sector does the business operate is?" />
-    <select-field labelClassName="text-capital-green-50" formControlName="" placeholder="select option" label="In which subsector does the business operate is?" />
-    <select-field labelClassName="text-capital-green-50" formControlName="" placeholder="select option" label="Which segments belong to the above sub sector?" />
-    <select-field labelClassName="text-capital-green-50" placeholder="select option"  label="What products and services are you offering?" />
+<form class="w-full flex flex-col lg:grid lg:grid-cols-2 gap-x-8 gap-y-6 lg:items-center" [formGroup]="formGroup" (submit)="handleSubmit()">
+    <select-field [options]="['Kenya', 'Uganda']" labelClassName="text-capital-green-50" formControlName="name" placeholder="select option" label="What is the name of your business?" />
+    <select-field [options]="['Kenya', 'Uganda']" labelClassName="text-capital-green-50" formControlName="country" placeholder="select option" label="What is your business country of operation?" />
+    <select-field [options]="['Kenya', 'Uganda']" labelClassName="text-capital-green-50" formControlName="sector" placeholder="select option" label="In which sector does the business operate is?" />
+    <select-field [options]="['Kenya', 'Uganda']" labelClassName="text-capital-green-50" formControlName="subsector" placeholder="select option" label="In which subsector does the business operate is?" />
+    <select-field [options]="['Kenya', 'Uganda']" labelClassName="text-capital-green-50" formControlName="segment" placeholder="select option" label="Which segments belong to the above sub sector?" />
+    <select-field [options]="['Kenya', 'Uganda']" labelClassName="text-capital-green-50" formControlName="products" placeholder="select option"  label="What products and services are you offering?" />
     <div class="col-span-2 flex flex-col-reverse md:grid grid-cols-2 lg:items-center gap-4 lg:gap-8">
         <app-button type="button" label="Previous Step" [showLeftArrow]="true" [showArrow]="false" className="text-capital-yellow-100 md:!py-[10px] !text-sm border hover:bg-capital-yellow-100 border-capital-yellow-100 hover:text-white hover:border-transparent transition-all" />
-        <app-button type="button" label="Save & go next" className="bg-capital-green-75 md:!py-[10px] !text-sm border border-transparent hover:bg-transparent hover:!text-capital-green-75 hover:border-capital-green-75 transition-all" />
+        <app-button type="submit" [disabled]="formGroup.invalid" label="Save & go next" className="bg-capital-green-75 md:!py-[10px] !text-sm border border-transparent hover:bg-transparent hover:!text-capital-green-75 hover:border-capital-green-75 transition-all" />
     </div>
 </form>
