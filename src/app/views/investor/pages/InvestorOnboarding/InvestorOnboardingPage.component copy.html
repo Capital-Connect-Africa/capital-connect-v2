@@ -34,43 +34,19 @@
         </div>
     </div>
 
-    <div class="bg-[#447468] px-[27px] pt-[88px] pb-[58px] flex flex-col gap-[50px] items-start">
-        <img class="w-[165px] h-[77px] object-cover" src="assets/img/logo-white.png"/>
-    
-        <div class="text-white text-left text-[24px] leading-[32px] font-semibold w-full flex items-center">
-          Quick &amp; Easy Setup
-        </div>
-        <div class="flex flex-col gap-6 relative pl-8 border-l border-[#3b82f6]">
-          <div class="flex items-center gap-4">
-            <div class="w-[11px] h-[11px] bg-white rounded-full -ml-[28px]"></div>
-            <div class="text-white text-[16px] leading-[24px] font-normal font-inter">
-              Investment Profile Setup
-            </div>
-          </div>
-      
-          <div class="flex items-center gap-[18px]">
-            <div class="w-[7px] h-[7px] bg-white rounded-full -ml-[26px]"></div>
-            <div class="text-[#fcba05] text-[16px] leading-[24px] font-semibold">
-              Investment Range
-            </div>
-          </div>
-      
-          <div class="flex items-center gap-[18px]">
-            <div class="w-[7px] h-[7px] bg-white rounded-full -ml-[26px]"></div>
-            <div class="text-white text-[16px] leading-[24px] font-normal font-inter">
-              Sectors of Interest
-            </div>
-          </div>
-      
-          <div class="flex items-center gap-[18px]">
-            <div class="w-[7px] h-[7px] bg-white rounded-full -ml-[26px]"></div>
-            <div class="text-white text-[16px] leading-[24px] font-normal font-inter">
-              Investment Criteria &amp; Impact
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      
+
+    <div class="bg-capital-green-75 h-full p-5">
+        <img src="../../../../../assets/img/logo-white.png" class="mt-[1cm]" alt="logo-white">
+        <p class="font-lufga leading-[32px] font-semibold text-white mb-[1cm] mt-[1cm]">Quick & Easy Set Up</p>
+        <div class="">
+            <p-timeline [value]="events" class="ml-[-6cm] mt-[.5cm]">
+                <ng-template #content let-event class="mx-[1cm] bg-red-600 p-5">
+                    <p class="text-[14px] ml-[.3cm] text-white">{{ event.status }}</p>
+                </ng-template>
+            </p-timeline>
+        </div>      
+
+
+    </div>
 
 </main>

@@ -5,10 +5,11 @@ import { TimelineModule } from 'primeng/timeline';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { InputFieldComponent } from "../../../../components/input-field/input-field.component";
 import { ButtonComponent } from "../../../../components/button/button.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-investor-onboarding',
-  imports: [TimelineModule, ProgressBarModule, InputFieldComponent, ButtonComponent],
+  imports: [TimelineModule, ProgressBarModule, InputFieldComponent, ButtonComponent,CommonModule],
   templateUrl: './InvestorOnboardingPage.component.html',
   styleUrl: './InvestorOnboardingPage.component.scss'
 })
@@ -27,6 +28,7 @@ export class InvestorOnboardingPageComponent {
             { status: 'Sectors of Interest', date: '15/10/2020 16:15', icon: 'pi pi-shopping-cart', color: '#FF9800' },
             { status: 'Investment Criteria & Impact', date: '16/10/2020 10:00', icon: 'pi pi-check', color: '#607D8B' }
         ];
+        
     }
     
 }
