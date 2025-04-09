@@ -7,7 +7,7 @@ import { InputFieldComponent } from "../../../../components/input-field/input-fi
 import { ButtonComponent } from "../../../../components/button/button.component";
 
 @Component({
-  selector: 'auth-layout',
+  selector: 'app-investor-onboarding',
   imports: [TimelineModule, ProgressBarModule, InputFieldComponent, ButtonComponent],
   templateUrl: './InvestorOnboardingPage.component.html',
   styleUrl: './InvestorOnboardingPage.component.scss'

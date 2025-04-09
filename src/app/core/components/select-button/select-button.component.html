@@ -1,0 +1,10 @@
+<div (click)="handleSelect()" class="group gap-4 flex items-center justify-between lg:w-[67%] cursor-pointer shadow px-8 py-4 rounded hover:bg-capital-yellow-light hover:translate-x-8 hover:border-capital-yellow-75 transition-all duration-200 ease-linear" [ngClass]="{'border-capital-yellow-75 bg-capital-yellow-light': active}">
+    <div class="grid items-center grid-cols-[10%_auto] gap-4">
+        <i class="text-2xl text-capital-green-75 group-hover:text-capital-yellow-75 transition-all duration-200 ease-linear" [ngClass]="{'text-capital-yellow-75': active}" [class]="icon"></i>
+        <div>
+            <h3 class="font-inter font-medium text-sm">{{label}}</h3>
+            <p class="text-sm font-normal text-[#787C81] leading-[21.4px]">{{placeholder}}</p>
+        </div>
+    </div>
+    <i class="pi pi-arrow-right text-xs text-[#7D7F83] group-hover:text-capital-yellow-75 transition-all duration-200 ease-linear" [ngClass]="{'text-capital-yellow-75': active}"></i>
+</div>

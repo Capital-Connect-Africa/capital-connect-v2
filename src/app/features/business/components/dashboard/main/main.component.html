@@ -1,0 +1,50 @@
+<div class="main">
+  <div class="navbar">
+    <button (click)="toggleVisibility()"><mat-icon>menu</mat-icon></button>
+    <app-navbar onDashboard="true" [showBanner]="false"/>
+  </div>
+
+  <main>
+    <p class="brand__name">{{businessName}}</p>
+    <app-overview />
+    <section class="lower__section">
+      <div class="">
+        <div>
+          <h2>Sessions</h2>
+          <div class="session__cards">
+            <app-pro-badge />
+            <app-assessment-summary [title]="'Session with an Advisor'" component="book" [body]="'Book a session with an advisor at Capital Connect Africa to gain personalized insights, expert advice, and tailored strategies for your business growth'" [linkLabel]="'Unlock the whole summary'"/>
+          </div>
+        </div>
+        <div>
+          <h2>Upcoming Schedule</h2>
+          <div class="">
+            <app-schedules-section [body]="'Book an appointment today to talk to one of our Business advisors'"  [subTitle]="'Talk to a representative'" [linkLabel]="'Book appointment'"/>
+          </div>
+        </div>
+        <div>
+          <h2>Transactions</h2>
+          <div class="">
+            <app-user-transaction-history />
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col right__col__content">
+        <div>
+          <h2>Setup progress</h2>
+          <ul class="progress__bars" *ngIf="progress$ | async">
+            <li *ngFor="let prog of progress">
+              <div class="values">
+                <span>{{prog.section}}</span>
+                <span>{{prog.progress+'%'}}</span>
+              </div>
+              <div class="bar"><div class="progress" [style]="'width:'+prog.progress+'%'"></div></div>
+            </li>
+          </ul>
+        </div>
+        <app-advertisement-space [title]="'Advertise Here'" [body]="'This space is available for your advertising needs. Contact us to learn more!'" />
+      </div>
+    </section>
+  </main>
+</div>
+

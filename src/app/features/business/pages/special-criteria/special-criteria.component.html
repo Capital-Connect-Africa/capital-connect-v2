@@ -1,0 +1,16 @@
+<ng-container *ngIf="specialCriteriaListing$ | async as criteria_list"/>
+
+<div class="main__content">
+  <app-sidenav [links]="links"/>
+  <div class="main">
+    <div class="navbar"><app-navbar onDashboard="true" /></div>
+    <main>
+        <div class="meta" *ngFor="let criteria of criteriaList">
+            <div class="label"><span>{{criteria.title}}</span> <span class="questions__count">Questions: {{(criteria.questions || []).length}}</span></div>
+            <p class="desc"><span>{{criteria.description}}</span> <button (click)="openQuestions(criteria.id)" class="sc__btn" *ngIf="(criteria.questions || []).length">Attempt</button></p>
+        </div>
+        <div class="no-data" *ngIf="criteriaList.length <1">No Special Criteria Listed Yet.</div>
+      </main>
+    </div>
+</div>
+      

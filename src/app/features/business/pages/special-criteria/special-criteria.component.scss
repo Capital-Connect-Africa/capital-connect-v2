@@ -1,0 +1,59 @@
+@import "../../../../styles/main.scss";
+@import "../../styles/business.components.steps.scss";
+
+.main__content{
+    display: grid;
+    grid-template-columns: max-content auto;
+    main{
+        gap: 2.5rem;
+        display: flex;
+        padding: 3rem 2rem;
+        flex-direction: column;
+    }
+}
+
+.meta{
+    padding-bottom: .5rem;
+    border-bottom: 1px solid #ddddddd2;
+    .label {
+        display: flex;
+        font-weight: bold;
+        font-size: 1.25rem;
+        align-items: center;
+        text-transform: uppercase;
+        justify-content: space-between;
+    }
+    
+    p {
+        color: #555;
+        font-size: 14px;
+        margin: 0.25rem 0;
+    }
+}
+
+.questions__count{
+    color: #555;
+    font-size: 14px;
+    font-weight: 400!important;
+}
+
+.desc{
+    gap: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .sc__btn{
+        color: white;
+        font-size: 13px;
+        padding: .5rem 1rem;
+        border-radius: .5rem;
+        background-color: $primary-color;
+    }
+}
+
+.no-data{
+    height: 25%;
+    color: #555;
+    
+}

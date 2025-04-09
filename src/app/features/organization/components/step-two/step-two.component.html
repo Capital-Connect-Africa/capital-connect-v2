@@ -1,0 +1,115 @@
+<ng-container *ngIf="stepTwoForm$ | async"></ng-container>
+<ng-container *ngIf="choices$ | async"></ng-container>
+
+
+<form [formGroup]="stepTwoForm" class="form__grid">
+  <div class="input__wrapper">
+    <label class="input__label">What is the registration structure of your business?<sup>*</sup></label>
+    <p-dropdown
+    class ="input__field"
+    styleClass ="w-full gap-4"
+    [formControlName] ="'registrationStructure'"
+    [options]="registrationStructures"
+    [optionLabel]="'title'"
+    [optionValue]="'title'"
+    [placeholder]="'Select an option'" >
+      <ng-template let-option pTemplate="item">
+        <span [pTooltip]="" [title]="option.description">{{option.title }}</span>
+      </ng-template>
+    </p-dropdown>
+  </div>
+
+  <div class="input__wrapper">
+    <label class="input__label">How many years has the business been in active operation?<sup>*</sup></label>
+    <p-dropdown
+      class ="input__field"
+      styleClass ="w-full gap-4"
+      [formControlName] ="'yearsOfOperation'"
+      [options]="yearsOfOperation"
+      [placeholder]="'Select an option'" />
+  </div>
+  <div class="input__wrapper">
+    <label class="input__label">What is the stage of growth of your business?<sup>*</sup></label>
+    <p-dropdown
+      class ="input__field"
+      styleClass ="w-full gap-4"
+      [formControlName] ="'growthStage'"
+      [options]="growthStages"
+      [optionLabel]="'title'"
+      [optionValue]="'title'"
+      [placeholder]="'Select an option'" >
+      <ng-template let-option pTemplate="item">
+        <span [pTooltip]="" [title]="option.description">{{option.title }}</span>
+      </ng-template>
+    </p-dropdown>
+  </div>
+  <div class="input__wrapper">
+    <label class="input__label">How many employees do you currently have?<sup>*</sup></label>
+    <p-dropdown
+      class ="input__field"
+      styleClass ="w-full gap-4"
+      [formControlName] ="'numberOfEmployees'"
+      [options]="numberOfEmployees"
+      [placeholder]="'Select an option'" />
+  </div>
+  <div class="input__wrapper">
+    <label class="input__label">What is your preferred structure for the capital raise?<sup>*</sup></label>
+    <p-multiSelect
+      class ="input__field"
+      styleClass ="w-full gap-4"
+      [formControlName] ="'investmentStructure'"
+      [options]="investmentStructure"
+      [optionLabel]="'title'"
+      [optionValue]="'title'"
+      [placeholder]="'Select option(s)'" >
+      <ng-template let-option pTemplate="item">
+        <span [pTooltip]="" [title]="option.description">{{option.title }}</span>
+      </ng-template>
+    </p-multiSelect>
+  </div>
+  <div class="input__wrapper">
+    <label class="input__label">What will be your use of funds?<sup>*</sup></label>
+    <p-multiSelect
+      class ="input__field"
+      styleClass ="w-full gap-4"
+      [formControlName] ="'useOfFunds'"
+      [options]="useOfFunds"
+      [optionLabel]="'title'"
+      [optionValue]="'title'"
+      [placeholder]="'Select option(s)'" >
+      <ng-template let-option pTemplate="item">
+        <span [pTooltip]="" [title]="option.description">{{option.title }}</span>
+      </ng-template>
+    </p-multiSelect>
+  </div>
+  <div class="input__wrapper">
+    <label class="input__label">What elements of impact does your business focus on?<sup>*</sup></label>
+    <p-multiSelect
+      class ="input__field"
+      styleClass ="w-full gap-4"
+      [formControlName] ="'esgFocusAreas'"
+      [options]="esgFocus"
+      [optionLabel]="'title'"
+      [optionValue]="'title'"
+      [placeholder]="'Select option(s)'" >
+      <ng-template let-option pTemplate="item">
+        <span [pTooltip]="" [title]="option.description">{{option.title }}</span>
+      </ng-template>
+    </p-multiSelect>
+  </div>
+  <div class="input__wrapper">
+    <label class="input__label">How much investment is the business seeking to raise?<sup>*</sup></label>
+    <input type="number" formControlName="fundsNeeded" class="input__field" placeholder="Enter amount"/>
+  </div>
+  <p class="input__label">Is the founder/ Manager running the business full time? <sup>*</sup></p>
+  <div class="inline__wrapper items-center">
+    <div class="inline__field">
+      <input type="radio" formControlName="fullTimeBusiness" [value]="true" id="full-time-yes" />
+      <label for="full-time-yes">Yes, I run it full-time.</label>
+    </div>
+    <div class="inline__field">
+      <input type="radio" formControlName="fullTimeBusiness" [value]="false" id="full-time-no" />
+      <label for="full-time-no">No, I run it part-time.</label>
+    </div>
+  </div>
+</form>

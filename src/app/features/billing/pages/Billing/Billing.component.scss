@@ -1,0 +1,373 @@
+@import "../../../../styles/main.scss";
+@import '../../../business/styles/business.components.steps.scss';
+@import 'quill/dist/quill.snow.css';
+
+.container {
+  color: $primary-color;
+}
+
+
+// Billing Page Styles
+
+.billing-container {
+  padding: 1rem 0;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  .billing-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    h1 {
+      line-height: 0;
+      font-size: 17px;
+      font-weight: 400;
+      color: #333;
+      text-transform: uppercase;
+    }
+
+    .billing-actions {
+      display: flex;
+      gap: 1rem;
+
+      .btn {
+        @extend .btn-primary;
+      }
+    }
+  }
+
+  .billing-summary {
+    margin-bottom: 1rem;
+    
+    .summary-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: $text-color;
+      margin-bottom: 0.5rem;
+    }
+
+    .summary-details {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      background-color: $gray-100;
+      border-radius: 0.5rem;
+    }
+  }
+
+  .billing-items {
+    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    // margin-bottom: 1rem;
+    
+    .item {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      border: 1px solid $gray-300;
+      border-radius: 0.5rem;
+      margin-bottom: 0.5rem;
+      
+      &.highlight {
+        background-color: $yellow-500;
+      }
+      
+      .item-price {
+        font-weight: 600;
+        color: $primary-color;
+      }
+    }
+  }
+
+  .billing-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-top: 2px solid $gray-300;
+    font-weight: 600;
+
+    .total-label {
+      color: $text-muted;
+    }
+
+    .total-amount {
+      color: $success-color;
+    }
+  }
+
+  .billing-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+
+    .cta__group {
+      @extend .cta__group;
+      
+      button {
+        &.btn-primary {
+          padding: 1rem 2rem;
+        }
+      }
+
+      > a {
+        color: $primary-color;
+        font-size: $font-size-sm;
+      }
+    }
+  }
+}
+
+// Responsive Styles
+@include when-screen-is-atleast(large) {
+  .billing-container {
+    // padding: 2rem 3rem;
+  }
+}
+
+
+.subscription-form {
+  display: flex; /* Aligns items in a row */
+  align-items: center; /* Vertically centers items */
+  gap: 10px; /* Adds spacing between elements */
+}
+
+.dropdown {
+  border-radius: 8px; /* Rounded corners for dropdown */
+  padding: 10px; /* Adds padding inside the dropdown */
+  border: 1px solid #ccc; /* Adds a border */
+  transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.dropdown:focus {
+  border-color: #007bff; /* Change border color on focus */
+  outline: none; /* Removes default outline */
+}
+
+.input-field {
+  border-radius: 8px; /* Rounded corners for inputs */
+  padding: 10px; /* Adds padding inside the input fields */
+  border: 1px solid #ccc; /* Adds a border */
+  flex: 1; /* Allows input fields to grow */
+  transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.input-field:focus {
+  border-color: #007bff; /* Change border color on focus */
+  outline: none; /* Removes default outline */
+}
+
+.btn {
+  padding: 10px 20px; /* Adds padding to buttons */
+  border-radius: 8px; /* Rounded corners for buttons */
+  cursor: pointer; /* Changes cursor on hover */
+}
+
+
+.item {
+  display: flex; /* Aligns contents in a row */
+  justify-content: space-between; /* Space between description and price */
+  align-items: center; /* Vertically center items */
+  padding: 10px; /* Adds padding inside the item */
+  border-radius: 8px; /* Rounded corners for the item */
+  border: 1px solid #ccc; /* Light border */
+  background-color:$yellow-500; /* White background */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow effect */
+  margin-bottom: 10px; /* Space between items */
+  transition: box-shadow 0.3s; /* Smooth transition for shadow on hover */
+}
+
+.item:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+
+
+.block, .input__label{
+  padding: 5px;
+}
+
+.cta__group{
+  margin-top: 1cm;
+}
+
+
+.input__field{
+  padding: 2cm;
+}
+
+
+.custom-dropdown .p-dropdown {
+  padding: 0.5rem; /* Adjust padding for the dropdown itself */
+}
+
+.custom-dropdown .p-dropdown-item {
+  padding: 0.75rem 1rem; /* Add padding to dropdown items */
+  margin: 0.25rem 0; /* Add margin between dropdown items */
+}
+
+
+
+
+.item-price{
+  font-size: 1rem;
+  font-weight: bolder;
+  
+}
+
+.monthly{
+  font-size: .3cm;
+  color: $primary-color;
+}
+
+
+
+.item-description{
+  color: $primary-color;
+} 
+
+
+
+$primary-color: $primary-color;; /* Your primary color */
+$shadow-color: rgba(0, 0, 0, 0.15); /* Light shadow for the cards */
+$hover-shadow: rgba(0, 0, 0, 0.3); /* Shadow for hover effect */
+$border-color: #e4e0e0; /* Border color */
+$button-hover-color: $primary-color; /* Button hover color */
+
+.item-price {
+  font-size: 1.2rem; /* Increased font size for better visibility */
+  font-weight: 700;
+  color: #424141; /* Darker text for clarity */
+  transition: color 0.3s ease-in-out;
+}
+
+.monthly {
+  font-size: 0.9rem; /* Slightly smaller for a cleaner look */
+  color: $primary-color;
+  font-weight: 400;
+  transition: color 0.3s ease-in-out;
+}
+
+.card {
+  // line-height: 1.5;
+  // flex: 1 1 300px;
+  padding: 20px;
+  // border: 1px solid #7a53dc8e;
+  color: rgba($color: #000000, $alpha: .7);
+  border-radius: 10px;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  &:hover{
+    box-shadow: 0 4px 8px $shadow-color;;
+  }
+}
+
+.item-description {
+  color: $primary-color;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: color 0.3s ease-in-out;
+  strong {
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+}
+
+.d-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+button {
+  padding: 8px;
+  font-size: 0.9rem;
+  line-height: 0;
+  mat-icon {
+    font-size: 1.2rem;  /* Icon size */
+    margin-right: 5px;  /* Optional: Adds some spacing between the icon and the text */
+  }
+
+  &.p-button-outline {
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    background-color: transparent;
+    padding: 6px 16px;
+
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+      transform: scale(1.05);
+    }
+  }
+
+  &.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    padding: 6px 16px;
+
+    &:hover {
+      background-color: #c82333;
+      transform: scale(1.05);
+    }
+  }
+}
+.edit__btn{
+  padding: .6rem;
+  font-weight: bold;
+  border: 1px solid;
+  transition: all .2s linear;
+}
+.inner__html{
+  color: #000000;
+  font-size: .9rem;
+  line-height: 0;
+  font-family: $font-family-sans-serif;
+  // max-height: 150px;
+  // overflow: hidden;
+}
+
+.features__list{
+  padding: .4rem 0 0 .4rem;
+  gap: 1rem;
+  li{
+    gap: .4rem;
+  }
+}
+
+.floating__button{
+  width: 62.5px!important;
+  height: 62.5px!important;
+  border-radius: 50%!important;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0!important;
+  cursor: pointer;
+  transition:all .2s linear;
+  box-shadow: 0 0 4px 5px rgba(0, 0, 0, 0.1);
+  i{
+    transition:all .2s linear;
+  }
+  &:hover{
+    i{
+      transform-origin: center center;
+      transform: rotate(45deg);
+    }
+    background-color: $primary-color;
+  }
+}
+

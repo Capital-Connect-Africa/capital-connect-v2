@@ -1,0 +1,11 @@
+@tailwind utilities;
+
+@layer utilities {
+    .order-0 {
+      order: 0;
+    }
+  }
+  
+.investor-dashboard-card {
+@apply flex flex-row justify-between items-end p-[28px_30px] gap-[43px] w-[356px] h-[172px] bg-white shadow-[0px_20px_50px_rgba(0,0,0,0.1)] rounded-[14px] flex-none flex-grow-0;
+}
