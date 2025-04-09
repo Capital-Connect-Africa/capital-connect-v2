@@ -11,14 +11,7 @@ import { SignInDto } from '../../../../features/auth/interfaces/signin.dto.inter
 
 @Component({
   selector: 'app-signup',
-  imports: [
-    RouterLink,
-    CommonModule,
-    ReactiveFormsModule,
-    InputFieldComponent,
-    ButtonComponent,
-    LoaderComponent,
-],
+  imports: [ RouterLink,CommonModule,ReactiveFormsModule,InputFieldComponent,ButtonComponent,LoaderComponent],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.scss',
   animations: [
@@ -35,7 +28,6 @@ import { SignInDto } from '../../../../features/auth/interfaces/signin.dto.inter
 })
 
 export class SignInComponent {
-  
   //booleans
   current_form: string = 'login';
   isTyping = false;
@@ -54,7 +46,6 @@ export class SignInComponent {
   });
 
 
-
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
@@ -64,21 +55,8 @@ export class SignInComponent {
     await this.store.signIn(values);
   }
 
-  setCurrentForm(form: string) {
-    this.current_form = form;    
-  }
-
   authBack(){
-    if(this.current_form === 'forgot'){
-      this.setCurrentForm('login')
-    }else if(this.current_form === 'check_inbox'){
-      this.setCurrentForm('forgot')
-    }else if(this.current_form === 'set_password'){
-      this.setCurrentForm('check_inbox')
-    }else{
       this._router.navigateByUrl('/')
-    }
-}
-
+  }
 
 }

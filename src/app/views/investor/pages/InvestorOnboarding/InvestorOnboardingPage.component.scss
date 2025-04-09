@@ -1,0 +1,20 @@
+// :host ::ng-deep .custom-progressbar {
+//     @apply bg-gray-200 rounded-lg h-4; /* Background and height */
+//   }
+  
+//   :host ::ng-deep .custom-progressbar .p-progressbar-value {
+//     @apply bg-blue-500 rounded-lg h-full transition-all duration-300; /* Progress fill */
+//   }
+  
+
+
+::ng-deep .custom-timeline .p-timeline-event-marker {
+  background-color: white !important;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+::ng-deep .custom-timeline .p-timeline-event-connector {
+  background-color: #3b82f6 !important;
+}

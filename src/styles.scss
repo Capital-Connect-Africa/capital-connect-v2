@@ -1,7 +1,8 @@
+@use "sass:meta";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-// @import './../src/app/styles/main.scss';
+@include meta.load-css('../src/app/styles/main.scss');
 
 @import "primeicons/primeicons.css";
 

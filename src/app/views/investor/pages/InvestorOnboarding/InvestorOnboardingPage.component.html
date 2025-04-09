@@ -1,0 +1,76 @@
+<main class="grid grid-cols-[85%_auto]">
+  
+    <div class="bg-capital-green-25 h-screen py-auto">
+        <div class="mx-auto  mt-[2.5cm] mb-[2cm] w-[1019px] h-[799px]  p-10  bg-white border border-[#DDE2E5] rounded-[20px]">
+            <div class="flex flex-row justify-end items-center p-0 gap-2 w-[939px] h-[18px] mx-auto"> 
+                 <p class="mt-[40px] font-inter text-[12px] text-capital-black leading-[18px] font-normal">Step 1 of 3</p>
+              </div>
+              
+            <div class="py-[16px] mx-auto w-[939px] mt-5">
+                <div class="w-full bg-capital-yellow-25 rounded-lg overflow-hidden h-[6px]">
+                    <div  class="bg-capital-yellow-75 h-full transition-all duration-300"  [style.width.%]="progress_bar_value">
+                    </div>
+                  </div>
+            </div>
+
+            <p class="text-center mt-16 mb-[1.3cm] text-capital-black leading-[32px] text-[28px] font-normal font-inter">Build Your Investment Identity</p>
+            
+            <div class="grid grid-cols-2 gap-4 p-10">
+                <input-field formControlName="username" class="[&_label]:text-capital-green-100 text-[18px] leading-[26px] font-inter font-medium" type="email" placeholder="Enter Email" label="Head Office Location?" />
+                <input-field formControlName="username" class="[&_label]:text-capital-green-100 text-[18px] leading-[26px] font-inter font-medium" type="email" placeholder="Enter Email" label="Countries ofinvestment focus?" />
+                <input-field formControlName="username" class="[&_label]:text-capital-green-100 text-[18px] leading-[26px] font-inter font-medium" type="email" placeholder="Enter Email" label="Organization Name?" />
+                <input-field formControlName="username" class="[&_label]:text-capital-green-100 text-[18px] leading-[26px] font-inter font-medium" type="email" placeholder="Enter Email" label="Fund Description?" />               
+                <input-field formControlName="username" class="[&_label]:text-capital-green-100 text-[18px] leading-[26px] font-inter font-medium" type="email" placeholder="Enter Email" label="Website Url?" />
+                <input-field formControlName="username" class="[&_label]:text-capital-green-100 text-[18px] leading-[26px] font-inter font-medium" type="email" placeholder="Enter Email" label="Email Address?" />               
+            </div>
+
+            <div class="flex justify-center gap-3 mt-10">
+                <app-button  className="bg-capital-green-100 hover:bg-capital-green-75 transition-all" label="Set Your Investment Capacity">
+                </app-button>
+                <app-button  className="bg-capital-green-100 hover:bg-capital-green-75 transition-all" label="Set Your Investment Capacity">
+                </app-button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bg-[#447468] px-[27px] pt-[88px] pb-[58px] flex flex-col gap-[50px] items-start">
+        <img class="w-[165px] h-[77px] object-cover" src="assets/img/logo-white.png"/>
+    
+        <div class="text-white text-left text-[24px] leading-[32px] font-semibold w-full flex items-center">
+          Quick &amp; Easy Setup
+        </div>
+        <div class="flex flex-col gap-6 relative pl-8 border-l border-[#3b82f6]">
+          <div class="flex items-center gap-4">
+            <div class="w-[11px] h-[11px] bg-white rounded-full -ml-[28px]"></div>
+            <div class="text-white text-[16px] leading-[24px] font-normal font-inter">
+              Investment Profile Setup
+            </div>
+          </div>
+      
+          <div class="flex items-center gap-[18px]">
+            <div class="w-[7px] h-[7px] bg-white rounded-full -ml-[26px]"></div>
+            <div class="text-[#fcba05] text-[16px] leading-[24px] font-semibold">
+              Investment Range
+            </div>
+          </div>
+      
+          <div class="flex items-center gap-[18px]">
+            <div class="w-[7px] h-[7px] bg-white rounded-full -ml-[26px]"></div>
+            <div class="text-white text-[16px] leading-[24px] font-normal font-inter">
+              Sectors of Interest
+            </div>
+          </div>
+      
+          <div class="flex items-center gap-[18px]">
+            <div class="w-[7px] h-[7px] bg-white rounded-full -ml-[26px]"></div>
+            <div class="text-white text-[16px] leading-[24px] font-normal font-inter">
+              Investment Criteria &amp; Impact
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+
+</main>

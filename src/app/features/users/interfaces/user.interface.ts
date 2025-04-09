@@ -19,3 +19,21 @@ export interface User{
     createdAt: Date;
     updatedAt: Date;
 }
+
+
+export interface Profile {
+    id: number;
+    roles: string;
+    lastName: string;
+    username: string;
+    firstName: string;
+    referralCode: string;
+    hasAcceptedTerms: boolean;
+    mobileNumbers: MobileNumber[];
+  }
+
+
+  export interface MobileNumber {
+    phoneNo: string;
+    isVerified: boolean;
+  }

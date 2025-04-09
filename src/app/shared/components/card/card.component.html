@@ -1,0 +1,14 @@
+<div class="card cursor-pointer" [ngClass]="{featured: detail?.featured}">
+  <div class="card__title">
+    <h3>{{detail?.title}}</h3>
+  </div>
+  <div class="card__body">
+    <h2 *ngIf="!detail?.icon">{{detail?.value}}</h2>
+    <!-- <h2 *ngIf="detail?.icon"><mat-icon>{{detail?.icon}}</mat-icon></h2> -->
+    <p *ngIf="detail?.period">{{detail?.period}}</p>
+  </div>
+  <div class="hr"></div>
+  <div class="card__footer">
+    <ng-content></ng-content>
+  </div>
+</div>

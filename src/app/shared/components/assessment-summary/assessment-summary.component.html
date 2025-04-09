@@ -1,0 +1,14 @@
+<ng-container *ngIf="transactionStatus$ | async"></ng-container>
+<ng-container *ngIf="message$ | async"></ng-container>
+<div class="card cursor-pointer">
+  <div class="card__title">
+    <h3>{{title}}</h3>
+  </div>
+  <div class="card__body">
+    <p>{{body}}</p>
+  </div>
+  <div class="card__footer">
+    <button class="cta__button" (click)="createBooking()">Book session</button>
+  </div>
+</div>
+

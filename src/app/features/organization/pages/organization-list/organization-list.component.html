@@ -1,0 +1,47 @@
+<ng-container *ngIf="companies$ | async"></ng-container>
+<app-admin-ui-container [title]="'Companies'">
+  <div>
+    <div class="table-header flex items-center justify-between">
+      <span class="p-input-icon-left">
+        <input type="text" pInputText placeholder="Search here..." (input)="applyFilter($event)">
+      </span>
+      <div>{{companiesShowingCount}} of <span>{{companiesCount}}</span></div>
+    </div>
+    <p-table #dt [value]="companies" [paginator]="true" [rows]="10" [globalFilterFields]="['organizationName', 'emailAddress', 'headOfficeLocation']" (onPage)="onPage($event)">
+      <ng-template pTemplate="header">
+        <tr>
+          <th *ngFor="let col of cols" [pSortableColumn]="col.field">
+            <span class="header-container">
+              <span class="header-text">
+                {{col.header}}
+              </span>
+              <p-sortIcon [field]="col.field"></p-sortIcon>
+            </span>
+          </th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-company>
+        <tr class="text-sm">
+          <td>{{company.name}}</td>
+          <td>{{company.country}}</td>
+          <td>{{company.growthStage}}</td>
+          <td>{{company.businessSector}}</td>
+          <td>
+            <div class="cta__btns">
+              <button class="btn__cta text-blue-600" title="Details" (click)="viewCompany(company.id)">
+                <i class="pi pi-info-circle"></i>
+              </button>
+              <button *ngIf="!isInvestor" class="btn__cta text-rose-600" title="Remove"><i class="pi pi-times"></i></button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">No investors found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</app-admin-ui-container>

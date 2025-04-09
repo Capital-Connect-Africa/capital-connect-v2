@@ -1,0 +1,23 @@
+<main class="grid lg:min-h-screen grid-cols-1 lg:grid-cols-[11%_auto] md:gap-8 p-4 lg:p-[5px]">
+  <div>
+    <app-sidenav [links]="links"></app-sidenav>
+    
+  </div>
+  <section class="px-5">
+    <div class="bg-capital-yellow-100">
+      <app-navbar [showBanner]="false" [title]="signalService.pageTitle()" [isAdmin]="true" onDashboard="true" />
+    </div>
+
+    <section class="w-[1227px] h-[1118px] gap-[50px] py-[35px] px-0 bg-capital-white">
+      <!-- <p>This is the router outlet section</p>
+      <router-outlet /> -->
+      <div>
+        <app-investor-dashboard ></app-investor-dashboard>
+      </div>
+     </section>
+    
+  </section>
+  <div>
+    <img src="assets/img/advert.png" class="h-100">
+  </div>
+</main>
