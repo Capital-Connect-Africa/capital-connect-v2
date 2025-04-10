@@ -10,12 +10,13 @@ import { HttpErrorHandlerService } from './http.error.handler.service';
 import { CrudMethods } from '../../interfaces/crud.methods.interface';
 import { QueryParams } from '../../interfaces/query.params.interface';
 import { environment } from '../../../../environments/environment';
+import { BASE_URL } from './constants';
 
 @Injectable({ providedIn: 'root' })
 export class BaseHttpService<T> implements CrudMethods<T> {
   private _httpClient = inject(HttpClient);
   private _errorHandler = inject(HttpErrorHandlerService);
-  private BASE_PATH = environment.apiUrl;
+  private BASE_PATH = BASE_URL;
 
   create(
     path: string,
