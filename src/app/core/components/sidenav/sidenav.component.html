@@ -1,5 +1,5 @@
 <ng-container >
-  <nav class="fixed inset-0 top-0 z-[99] flex h-full flex-col gap-8 bg-[#FEFFFE] p-4 border-r-2 border-[#eeeff1a9]"
+  <nav class="fixed inset-0 top-0 z-[99] flex h-full flex-col gap-8 bg-[#FEFFFE] p-5 border-r-2 border-[#eeeff1a9]"
        [ngClass]="{
          'hidden': isHidden,
          'w-auto p-4': !showNav,
@@ -14,7 +14,7 @@
       <i *ngIf="!showNav" class="pi pi-chevron-right flex h-full w-full items-center justify-center text-[1.5rem]"></i>
     </button>
     
-    <img src="assets/img/logo.png" alt="logo" class="mx-auto block h-auto border-0" [ngClass]="{'w-[80px]': !showNav, 'w-[130px]': showNav}"/>
+    <img src="assets/img/logo.png" alt="logo" class="block h-auto border-0" [ngClass]="{'w-[80px]': !showNav, 'w-[130px]': showNav}"/>
     
     <ul class="flex flex-col gap-2">
       @for (link of links; track $index) {
