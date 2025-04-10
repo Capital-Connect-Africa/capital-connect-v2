@@ -34,43 +34,22 @@
         </div>
     </div>
 
-    <div class="bg-[#447468] px-[27px] pt-[88px] pb-[58px] flex flex-col gap-[50px] items-start">
-        <img class="w-[165px] h-[77px] object-cover" src="assets/img/logo-white.png"/>
-    
-        <div class="text-white text-left text-[24px] leading-[32px] font-semibold w-full flex items-center">
-          Quick &amp; Easy Setup
-        </div>
-        <div class="flex flex-col gap-6 relative pl-8 border-l border-[#3b82f6]">
-          <div class="flex items-center gap-4">
-            <div class="w-[11px] h-[11px] bg-white rounded-full -ml-[28px]"></div>
-            <div class="text-white text-[16px] leading-[24px] font-normal font-inter">
-              Investment Profile Setup
-            </div>
+    <section class="hidden h-full w-full lg:block">
+      <div class="fixed  w-full flex flex-col bg-capital-green-75 h-full pt-14 px-[27px] gap-10">
+          <div>
+              <img src="assets/img/logo-white.png" class="w-[105px] block" />
           </div>
-      
-          <div class="flex items-center gap-[18px]">
-            <div class="w-[7px] h-[7px] bg-white rounded-full -ml-[26px]"></div>
-            <div class="text-[#fcba05] text-[16px] leading-[24px] font-semibold">
-              Investment Range
-            </div>
-          </div>
-      
-          <div class="flex items-center gap-[18px]">
-            <div class="w-[7px] h-[7px] bg-white rounded-full -ml-[26px]"></div>
-            <div class="text-white text-[16px] leading-[24px] font-normal font-inter">
-              Sectors of Interest
-            </div>
-          </div>
-      
-          <div class="flex items-center gap-[18px]">
-            <div class="w-[7px] h-[7px] bg-white rounded-full -ml-[26px]"></div>
-            <div class="text-white text-[16px] leading-[24px] font-normal font-inter">
-              Investment Criteria &amp; Impact
-            </div>
-          </div>
-        </div>
+  
+          <h3 class="text-white font-inter font-semibold text-lg -mt-4">Quick &amp; Easy Setup</h3>
+          <ul class="flex flex-col w-full gap-[45px]">
+              <li *ngFor="let step of steps; let first = first; let last = last" class="w-full relative flex items-center">
+                  <div class="bg-white relative rounded-full after:absolute after:h-[47px] after:bg-capital-blue-50 isolate after:-z-10 after:w-[1px] after:top-[100%] after:left-[50%] after:-translate-x-[50%]" [class.after:hidden]="last"  [class]="step.done ? '-left-[2px] w-[11px] h-[11px]' : 'w-[7px] h-[7px]'"></div>
+                  <small class="text-[13px] leading-[0]  font-inter font-light pl-3" [ngClass]="{'text-capital-yellow-100': step.isActive, 'text-white': !step.isActive}">{{step.label}}</small>
+              </li>
+          </ul>
+
       </div>
-      
+  </section>
       
 
 </main>
