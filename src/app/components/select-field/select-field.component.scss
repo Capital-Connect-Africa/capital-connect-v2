@@ -1,0 +1,57 @@
+:host ::ng-deep {
+    .p-multiselect-header{
+        padding: 0 0 .5rem .75rem;
+        gap: .5rem;
+        .p-multiselect-filter-container{
+            .p-iconfield{
+                .p-inputicon{
+                    margin-top: 0!important;
+                    transform: translateY(-50%)!important;
+                }
+                .p-multiselect-filter{
+                    padding: .5rem;
+                    padding-right: 2rem;
+                    border-radius: .2rem;
+                    box-shadow: none!important;
+                    border: 1px solid #cbd5e1c7;
+                    &:focus{
+                        border-color: #121212;
+                    }
+                }
+            }
+        }
+    }
+    .p-select-item,
+    .p-multiselect-item,
+    .p-multiselect-label,
+    .p-select-label{
+      white-space: wrap!important;
+    }
+
+
+    .p-icon{
+        height: 10px!important;
+    }
+
+    .p-multiselect-list,
+    .p-select ul{
+        padding: .5rem;
+        display: flex;
+        flex-direction: column;
+        li{
+          display: flex;
+          padding: .5rem;
+          gap: .5rem;
+          align-items: center;
+          .p-checkbox-box{
+            display: inline-flex;
+            border: 1px solid #f1f1f1;
+        }
+        }
+    }
+    .p-multiselect-list{
+        li{
+            padding: .25rem;
+        }
+    }
+  }

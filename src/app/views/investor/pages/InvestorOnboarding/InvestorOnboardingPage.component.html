@@ -34,19 +34,22 @@
         </div>
     </div>
 
+    <section class="hidden h-full w-full lg:block">
+      <div class="fixed  w-full flex flex-col bg-capital-green-75 h-full pt-14 px-[27px] gap-10">
+          <div>
+              <img src="assets/img/logo-white.png" class="w-[105px] block" />
+          </div>
+  
+          <h3 class="text-white font-inter font-semibold text-lg -mt-4">Quick &amp; Easy Setup</h3>
+          <ul class="flex flex-col w-full gap-[45px]">
+              <li *ngFor="let step of steps; let first = first; let last = last" class="w-full relative flex items-center">
+                  <div class="bg-white relative rounded-full after:absolute after:h-[47px] after:bg-capital-blue-50 isolate after:-z-10 after:w-[1px] after:top-[100%] after:left-[50%] after:-translate-x-[50%]" [class.after:hidden]="last"  [class]="step.done ? '-left-[2px] w-[11px] h-[11px]' : 'w-[7px] h-[7px]'"></div>
+                  <small class="text-[13px] leading-[0]  font-inter font-light pl-3" [ngClass]="{'text-capital-yellow-100': step.isActive, 'text-white': !step.isActive}">{{step.label}}</small>
+              </li>
+          </ul>
 
-    <div class="bg-capital-green-75 h-full p-5">
-        <img src="../../../../../assets/img/logo-white.png" class="mt-[1cm]" alt="logo-white">
-        <p class="font-lufga leading-[32px] font-semibold text-white mb-[1cm] mt-[1cm]">Quick & Easy Set Up</p>
-        <div class="">
-            <p-timeline [value]="events" class="ml-[-6cm] mt-[.5cm]">
-                <ng-template #content let-event class="mx-[1cm] bg-red-600 p-5">
-                    <p class="text-[14px] ml-[.3cm] text-white">{{ event.status }}</p>
-                </ng-template>
-            </p-timeline>
-        </div>      
-
-
-    </div>
+      </div>
+  </section>
+      
 
 </main>

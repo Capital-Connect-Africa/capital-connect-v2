@@ -1,0 +1,145 @@
+<ng-container *ngIf="submissions$ | async"></ng-container>
+<ng-container *ngIf="investorEligilityResponses$ | async"></ng-container>
+<ng-container *ngIf="investorPreparednessResponses$ | async"></ng-container>
+<ng-container *ngIf="businessResponses$ | async"></ng-container>
+<ng-container *ngIf="impactAssessmentResponses$ | async"></ng-container>
+<ng-container *ngIf="scoring$ | async"></ng-container>
+<ng-container *ngIf="delete$ | async"></ng-container>
+<div details class="tab-view">
+  <div class="tab-headers">
+    <div class="tab-header" [class.active]="activeTab === 'investorEligibility'"
+      (click)="setActiveTab('investorEligibility')">
+      Investor Eligibility
+    </div>
+    <div class="tab-header" [class.active]="activeTab === 'investorPreparedness'"
+      (click)="setActiveTab('investorPreparedness')">
+      Investor Preparedness
+    </div>
+    <div class="tab-header" [class.active]="activeTab === 'businessResponses'"
+      (click)="setActiveTab('businessResponses')">
+      Business Information
+    </div>
+    <div class="tab-header" [class.active]="activeTab === 'impactAssessment'"
+      (click)="setActiveTab('impactAssessment')">
+      Impact Assessment
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <div class="answer-container" *ngIf="activeTab === 'investorEligibility'">
+      <div class="flex items-center gap-4" *ngIf="investorEligibilityResponses && investorEligibilityResponses.length">
+        <div class="score-card"> 
+          Score: &nbsp;&nbsp;
+          <span>
+            {{investorEligibilityScore}} %
+          </span>
+        </div>
+        <button *ngIf="!isInvestor" (click) ="deleteSubmission('investorEligibility')" class="btn bg-transparent p-1 cta__remove text-rose-500" pTooltip="Delete">
+          <i class="pi pi-trash"></i>
+        </button>
+    </div>
+      <ng-container *ngIf="investorEligibilityResponses && investorEligibilityResponses.length; else noResponses">
+        <ul>
+          <li *ngFor="let response of investorEligibilityResponses">
+            <div class="card__item__details">
+              <div>
+                <label>Question:</label>
+                <p>{{ response.question.text }}</p>
+              </div>
+              <div>
+                <label>Answer:</label>
+                <p>{{ response.answer.text }}</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </ng-container>
+    </div>
+
+    <div class="answer-container" *ngIf="activeTab === 'businessResponses'">
+      <div class="flex items-center gap-4" *ngIf="businessResponses && businessResponses.length">
+        <button *ngIf="!isInvestor" (click) ="deleteSubmission('businessResponses')" class="btn bg-transparent p-1 cta__remove text-rose-500" pTooltip="Delete">
+          <i class="pi pi-trash"></i>
+        </button>
+    </div>
+      <ng-container *ngIf="businessResponses && businessResponses.length; else noResponses">
+        <ul>
+          <li *ngFor="let response of businessResponses">
+            <div class="card__item__details">
+              <div>
+                <label>Question:</label>
+                <p>{{ response.question.text }}</p>
+              </div>
+              <div>
+                <label>Answer:</label>
+                <p>{{ response.answer.text }}</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </ng-container>
+    </div>
+
+    <div class="answer-container" *ngIf="activeTab === 'investorPreparedness'">
+      <div class="flex items-center gap-4" *ngIf="investorPreparednessResponses && investorPreparednessResponses.length">
+        <div class="score-card"> 
+          Score: &nbsp;&nbsp;
+          <span>
+            {{investorPreparednessScore}} %
+          </span>
+        </div>
+        <button *ngIf="!isInvestor" (click) ="deleteSubmission('investorPreparedness')" class="btn bg-transparent p-1 cta__remove text-rose-500" pTooltip="Delete">
+          <i class="pi pi-trash"></i>
+        </button>
+    </div>
+      <ng-container *ngIf="investorPreparednessResponses && investorPreparednessResponses.length; else noResponses">
+        <ul>
+          <li *ngFor="let response of investorPreparednessResponses">
+            <div class="card__item__details">
+              <div>
+                <label>Question:</label>
+                <p>{{ response.question.text }}</p>
+              </div>
+              <div>
+                <label>Answer:</label>
+                <p>{{ response.answer.text }}</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </ng-container>
+    </div>
+    <div class="answer-container" *ngIf="activeTab === 'impactAssessment'">
+      <div class="flex items-center gap-4" *ngIf="impactAssessmentResponses && impactAssessmentResponses.length">
+        <div class="score-card"> 
+          Score: &nbsp;&nbsp;
+          <span>
+            {{impactAssessmentScore}} %
+          </span>
+        </div>
+        <button *ngIf="!isInvestor" (click) ="deleteSubmission('impactAssessment')" class="btn bg-transparent p-1 cta__remove text-rose-500" pTooltip="Delete">
+          <i class="pi pi-trash"></i>
+        </button>
+    </div>
+      <ng-container *ngIf="impactAssessmentResponses && impactAssessmentResponses.length; else noResponses">
+        <ul>
+          <li *ngFor="let response of impactAssessmentResponses">
+            <div class="card__item__details">
+              <div>
+                <label>Question:</label>
+                <p>{{ response.question.text }}</p>
+              </div>
+              <div>
+                <label>Answer:</label>
+                <p>{{ response.answer.text }}</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </ng-container>
+    </div>
+    <ng-template #noResponses>
+      <div class="no-responses">No responses available.</div>
+    </ng-template>
+  </div>
+</div>

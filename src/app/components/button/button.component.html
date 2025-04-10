@@ -6,8 +6,19 @@
   [ngClass]="{ 'bg-capital-green-25 hover:bg-capital-green-25': disabled}"
   (click)="handleClick()">
   <ng-container *ngIf="showContent">
-    <span >{{ label }}</span>
-        <i *ngIf="showArrow" class="pi pi-arrow-right text-xs group-hover:translate-x-2 transition-all" [ngClass]="{ 'group-hover:translate-x-0': disabled }"></i>
+    <i
+      *ngIf="showLeftArrow"
+          class="pi pi-arrow-left text-xs group-hover:-translate-x-2 transition-all"
+          [ngClass]="{ 'group-hover:translate-x-0': disabled }"
+        ></i>
+    <span
+      >{{ label }}</span
+      >
+        <i
+      *ngIf="showArrow"
+          class="pi pi-arrow-right text-xs group-hover:translate-x-2 transition-all"
+          [ngClass]="{ 'group-hover:translate-x-0': disabled }"
+        ></i>
   </ng-container>
     <ng-content></ng-content>
   </button>

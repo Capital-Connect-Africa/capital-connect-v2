@@ -11,6 +11,7 @@ export class ButtonComponent {
   @Input() className = '';
   @Input() label = '';
   @Input() showArrow = true;
+  @Input() showLeftArrow = false;
   @Input() showContent = true;
   @Input() type: 'submit' | 'button' = 'submit';
   @Input() disabled = false;

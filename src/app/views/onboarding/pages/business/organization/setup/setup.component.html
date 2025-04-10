@@ -1,0 +1,16 @@
+<ng-container *ngIf="paramsSubscription$ | async"></ng-container>
+<div class="lg:bg-[#F3FFFC] min-h-full w-full flex justify-center items-center pt-12 md:pt-0">
+    <div class="bg-white w-full lg:w-[80%] xl:w-2/3 p-4 lg:p-8 lg:border rounded-md lg:border-[#DDE2E5] flex flex-col gap-8">
+        <div class="flex flex-col gap-4">
+            <p class="text-right text-xs font-normal font-inter">Step {{steps.indexOf(currentStep)+1}} of {{steps.length}}</p>
+            <div class="w-full overflow-hidden rounded h-[4px] bg-capital-yellow-25">
+                <div class="h-full bg-capital-yellow-75 transition-all duration-200" [ngStyle]="{ 'width': ((steps.indexOf(currentStep)+1) / steps.length) *100 +'%' }"></div>
+            </div>
+            
+        </div>
+        <organization-setup-step-one *ngIf="currentStep === possibleSteps.STEP_ONE"/>
+        <organization-setup-step-two *ngIf="currentStep === possibleSteps.STEP_TWO"/>
+        <organization-setup-step-three *ngIf="currentStep === possibleSteps.STEP_THREE"/>
+    </div>
+
+</div>

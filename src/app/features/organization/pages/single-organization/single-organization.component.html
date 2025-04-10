@@ -1,0 +1,31 @@
+<ng-container *ngIf="company$ | async as company">
+  <app-admin-ui-container [title]="company.name">
+    <div class="tab-view">
+      <div class="tab-headers">
+        <div class="tab-header" [class.active]="activeTab === 'companyInfo'" (click)="setActiveTab('companyInfo')">
+          Company Information
+        </div>
+        <div class="tab-header" [class.active]="activeTab === 'ownerInfo'" (click)="setActiveTab('ownerInfo')">
+          Owner Information
+        </div>
+        <div class="tab-header" [class.active]="activeTab === 'submissionInfo'"
+          (click)="setActiveTab('submissionInfo')">
+          User Submissions
+        </div>
+      </div>
+
+      <div class="tab-content" [@tabChange]="activeTab">
+        <div *ngIf="activeTab === 'companyInfo'">
+          <app-organization-info [company]="company"></app-organization-info>
+        </div>
+        <div *ngIf="activeTab === 'ownerInfo'">
+          <app-organization-owner-info [owner]="company.user"></app-organization-owner-info>
+        </div>
+
+        <div *ngIf="activeTab === 'submissionInfo'">
+          <app-organization-submissions-info [company]="company"></app-organization-submissions-info>
+        </div>
+      </div>
+    </div>
+  </app-admin-ui-container>
+</ng-container>

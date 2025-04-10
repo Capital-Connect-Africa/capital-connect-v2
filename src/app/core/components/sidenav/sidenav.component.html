@@ -1,0 +1,68 @@
+<ng-container >
+  <nav class="fixed inset-0 top-0 z-[99] flex h-full flex-col gap-8 bg-[#FEFFFE] p-4 border-r-2 border-[#eeeff1a9]"
+       [ngClass]="{
+         'hidden': isHidden,
+         'w-auto p-4': !showNav,
+         'w-[250px]': showNav && !isHidden
+       }">
+    <button *ngIf="!isHidden" class="absolute right-[-1rem] top-6 z-[5] h-[30px] w-[30px] cursor-pointer overflow-hidden rounded-full border border-[#0000001A] bg-white align-middle shadow-[0_0_4px_#0000001A] transition-all duration-200 hover:scale-125">
+      <i *ngIf="showNav" class="pi pi-chevron-left flex h-full w-full items-center justify-center text-[1.5rem]"></i>
+      <i *ngIf="!showNav" class="pi pi-chevron-right flex h-full w-full items-center justify-center text-[1.5rem]"></i>
+    </button>
+    <button *ngIf="isHidden" (click)="hide_navbar()" class="absolute right-[-1rem] top-6 z-[5] h-[30px] w-[30px] cursor-pointer overflow-hidden rounded-full border border-[#0000001A] bg-white align-middle shadow-[0_0_4px_#0000001A] transition-all duration-200 hover:scale-125">
+      <i *ngIf="showNav" class="pi pi-chevron-left flex h-full w-full items-center justify-center text-[1.5rem]"></i>
+      <i *ngIf="!showNav" class="pi pi-chevron-right flex h-full w-full items-center justify-center text-[1.5rem]"></i>
+    </button>
+    
+    <img src="assets/img/logo.png" alt="logo" class="mx-auto block h-auto border-0" [ngClass]="{'w-[80px]': !showNav, 'w-[130px]': showNav}"/>
+    
+    <ul class="flex flex-col gap-2">
+      @for (link of links; track $index) {
+        <li *ngIf="link?.display" class="marked:relative" [ngClass]="{'marked:after:absolute marked:after:top-[0.6rem] marked:after:right-8 marked:after:h-[9px] marked:after:w-[9px] marked:after:rounded-full marked:after:bg-[#dc3545]': link.display}">
+        @if(link.children && link.children.length >0){
+          <button class="label flex w-full items-center justify-between gap-4 rounded-md px-4 py-3 text-base font-medium text-[#6c757d] transition-all duration-200" 
+                  (click)="expandTree($index, link.href)" 
+                  [ngClass]="{'active:bg-[#0f3c3e] active:text-white active:shadow-[0_0_5px_0_#3745571a]': signalService.expandedLink() ===$index}">
+            <span class="flex items-center gap-4">
+              <i *ngIf="link.icon" [class]="'pi ' + link.icon"></i>
+              <span>{{link.label}}</span>
+            </span>
+            <i class="pi pi-angle-right" *ngIf="signalService.expandedLink() !==$index"></i>
+            <i class="pi pi-angle-down" *ngIf="signalService.expandedLink() ===$index"></i>
+          </button>
+          <div class="child__links pl-8" *ngIf="signalService.expandedLink() ===$index">
+            <div *ngFor="let child of link.children">
+              <a [routerLink]="child.href" *ngIf="!child.external" 
+                 [routerLinkActiveOptions]="{ exact: !!child?.exact }" 
+                 routerLinkActive="text-[#0f3c3e]"
+                 class="flex items-center gap-4 rounded-md px-4 py-3 text-base font-medium text-[#6c757d] transition-all duration-200 hover:text-[#212529]">
+                <i *ngIf="child.icon" [class]="'pi ' + child.icon"></i> 
+                <span>{{child.label}}</span>
+              </a>
+              <a [href]="child.href" target="_blank" *ngIf="child.external"
+                 class="flex items-center gap-4 rounded-md px-4 py-3 text-base font-medium text-[#6c757d] transition-all duration-200 hover:text-[#212529]">
+                <i *ngIf="child.icon" [class]="'pi ' + child.icon"></i> 
+                <span>{{child.label}}</span>
+              </a>
+            </div>
+          </div>
+        }@else {
+            <a (click)="openPage()" [routerLink]="link.href" 
+               [routerLinkActiveOptions]="{ exact: !!link?.exact }" 
+               routerLinkActive="bg-[#0f3c3e] text-white shadow-[0_0_5px_0_#3745571a]"
+               class="flex items-center gap-4 rounded-md px-4 py-3 text-base font-medium text-[#6c757d] no-underline transition-all duration-200 hover:text-[#212529]">
+              <i *ngIf="link.icon" [class]="'pi ' + link.icon"></i> 
+              <span>{{link.label}}</span>
+            </a>
+          }
+        </li>
+      }
+      <li class="mb-24">
+        <button (click)="logOut()" class="flex items-center gap-4 rounded-md px-4 py-3 text-base font-medium text-[#6c757d] transition-all duration-200 hover:text-[#212529]">
+          <i class="pi pi-sign-out"></i> 
+          <span>Logout</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</ng-container>

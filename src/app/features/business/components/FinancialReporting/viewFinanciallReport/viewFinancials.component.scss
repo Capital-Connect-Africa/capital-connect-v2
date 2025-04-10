@@ -1,0 +1,532 @@
+@import "../../../styles/main.scss";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import '../../../../business/styles/business.components.steps.scss';
+
+
+
+.p-datatable-gridlines{
+  width: 100% !important;
+}
+// tables 
+:host ::ng-deep .p-paginator {
+  padding-top: 2rem;
+  justify-content: flex-start !important;
+}
+
+:host ::ng-deep .p-datatable {
+  tr {
+    transition: all .2s linear;
+    cursor: default;
+
+    &:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    &:hover {
+      background-color: #654f291a;
+    }
+
+    td,
+    th {
+      padding: 1rem 0 1rem .5rem;
+    }
+
+    th {
+      background-color: #f4f4f5;
+
+      span {
+        padding: 0 .5rem;
+        justify-content: flex-start;
+        background-color: transparent !important;
+      }
+    }
+  }
+}
+
+
+
+/* Style for the overall TabView */
+:host ::ng-deep .p-tabview {
+  // border: 1px solid $gray-300;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba($black, 0.1);
+  background-color: $white;
+}
+
+/* Style for individual tab headers */
+:host ::ng-deep .p-tabview-nav li {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  margin-right: 5px;
+  color: black;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+/* Active tab header style */
+:host ::ng-deep .p-tabview-nav li.p-highlight {
+  color: $primary-color;
+  border-color: $primary-color;
+}
+
+/* Hover effect for tab headers */
+:host ::ng-deep .p-tabview-nav li:hover {
+  color: $secondary-color;
+}
+
+/* Style for tab content */
+:host ::ng-deep .p-tabview-panel {
+  padding: 1.5rem;
+  font-size: 1rem;
+  color: $text-color;
+  background-color: $gray-100;
+  border-top: 1px solid $gray-300;
+  border-radius: 0 0 8px 8px;
+}
+
+/* Optional: Style for specific text within the tab content */
+:host ::ng-deep .p-tabview-panel p {
+  line-height: 1.6;
+  // color: $text-muted;
+}
+
+
+:host ::ng-deep .p-tabview-nav li.p-highlight {
+  border-radius: 0;
+}
+
+:host ::ng-deep .p-tabview-title{
+  padding: .2rem;
+}
+
+
+
+.record-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+
+    .record-title {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .record-value {
+      color: #007bff;
+    }
+  }
+}
+
+/* Styling specific to TabView */
+:host ::ng-deep .p-tabview {
+  margin: 1rem 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+:host ::ng-deep .p-tabview-nav li {
+  font-size: 1rem;
+  font-family: $font-family-roboto;
+  color: #555;
+  font-weight: 300;
+}
+
+:host ::ng-deep .p-tabview-panel {
+  background-color: #f9f9f9;
+}
+
+.cta__group{
+  margin-bottom: .5cm;
+}
+
+
+.mat-icon{
+  cursor: pointer;
+  size: 22rem;
+  color: green;
+}
+
+h3{
+  color: $primary-color;
+}
+
+.mat-icon:hover{
+  opacity: .6;
+}
+
+
+
+.financial-info-card {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+
+  .header {
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 1.5rem;
+      color: #333;
+    }
+  }
+
+  .content {
+    p {
+      margin: 8px 0;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      strong {
+        color: #555;
+      }
+    }
+
+    .status {
+      font-weight: bold;
+      color: $primary-color; /* Green for positive status */
+    }
+  }
+
+  .financial-section {
+    margin-top: 20px;
+
+    h3 {
+      font-size: 1.2rem;
+      color: $primary-color;
+      margin-bottom: 10px;
+      // text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    ul {
+      padding-left: 20px;
+      list-style-type: disc;
+
+      li {
+        margin-bottom: 5px;
+        font-size: 0.95rem;
+
+        .value {
+          font-weight: bold;
+          color: $primary-color; /* Blue for monetary values */
+        }
+      }
+    }
+  }
+}
+
+
+.mt-55{
+  margin-top: .5cm;
+}
+
+.financial-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .5cm;
+}
+
+.edit_financials{
+  color: $info-color;
+  cursor: pointer;
+}
+
+
+/* Apply to all ng-container elements */
+ng-container {
+  font-family: 'Roboto', sans-serif; /* Choose a clean, professional font */
+  font-size: 16px; /* Set a consistent font size */
+  letter-spacing: 0.5px; /* Slightly increase letter spacing for readability */
+  line-height: 1.5; /* Improve line height for better text flow */
+}
+
+/* Style headers */
+h2 {
+  font-size: 20px; /* Larger size for emphasis */
+  font-weight: bold; /* Make it bold */
+  margin-bottom: 10px; /* Add spacing below */
+}
+
+/* Style buttons inside financial container */
+.financial-container .btn {
+  font-size: 14px; /* Smaller text size for buttons */
+  letter-spacing: 0.3px; /* Subtle spacing for clarity */
+}
+
+/* Style table headers */
+p-table th {
+  font-family: 'Roboto', sans-serif; 
+  font-size: 14px;
+  font-weight: bold;
+  // text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #555; /* Softer color for readability */
+}
+
+/* Style table body cells */
+p-table td {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  padding: 10px; /* Add padding for spacing */
+}
+
+/* Style labels and inputs */
+.input__wrapper label {
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 5px;
+
+}
+
+.input__wrapper .input__field {
+  font-size: 14px;
+  // padding: 8px;
+  border: 1px solid #ddd; /* Subtle border for inputs */
+  border-radius: 4px;
+}
+
+
+
+
+
+
+
+.financial-info-card {
+  background-color: #f9f9f9; /* Subtle background for contrast */
+  // padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+  
+  .content {
+    p {
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
+      color: #333;
+      
+      strong {
+        font-weight: 600;
+        color: #555;
+      }
+    }
+  }
+  
+  .financial-section {
+    margin-top: 1.5rem;
+    
+    .status {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #444;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p-table {
+      th, td {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+        color: #222;
+      }
+
+      mat-icon {
+        color: #007bff; /* Action icons in a noticeable blue */
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: color 0.2s;
+
+        &:hover {
+          color: #0056b3;
+        }
+      }
+    }
+  }
+
+
+  .cta__group {
+    text-align: right;
+
+    .btn {
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 0.5rem 1rem;
+
+    }
+  }
+}
+
+
+.financial-info-card {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    p {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .edit-link {
+      font-size: 0.9rem;
+      color: #007bff;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  .content {
+    p {
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
+
+      strong {
+        font-weight: 600;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  .financial-section {
+    margin-top: 1.5rem;
+
+    .status {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    p-table {
+      th, td {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    .empty-state {
+      font-size: 0.9rem;
+      color: #888;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+
+.red_txt{
+  color: red;
+}
+
+.year{
+  cursor: pointer;
+}
+
+
+.year:hover{
+  opacity: .7;
+  transform: scale(1.1);
+}
+
+
+
+.section-header {
+  background-color: #f2f2f2; /* Light gray background */
+  font-size: 16px; /* Larger font size */
+  font-weight: bold; /* Bold text */
+  padding: 10px; /* Add padding */
+  text-align: start; /* Align text to the left */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///latest
+/// /* General table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  margin: 20px 0;
+}
+
+/* Header row with years */
+th {
+  background-color: #203764ff !important; /* Dark blue background */
+  color: white !important; /* White text */
+  text-align: left;
+  font-weight: bold;
+}
+
+/* Table cell styling */
+td {
+  padding: 8px;
+  text-align: left;
+}
+
+/* Remove borders */
+td, th {
+  width: 2cm;
+  border: none;
+  max-width: 2.5cm !important;
+}
+
+/* Bottom border for totals, profit/loss, and taxes */
+.total-row, .profit-loss-row, .taxes-row {
+  border-bottom: 2px solid #203764ff; /* Dark blue bottom border */
+}
+
+/* Bold and underline totals */
+.total-row {
+  font-weight: bold;
+}
+
+/* Negative values in brackets */
+.negative {
+  color: red;
+}
+
+/* Remove dollar signs and ensure comma-separated values */
+.currency-value {
+  font-family: Arial, sans-serif;
+}
+
+.td_description{
+  min-width: 5cm;
+}

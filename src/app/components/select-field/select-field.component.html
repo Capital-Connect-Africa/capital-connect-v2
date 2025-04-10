@@ -1,0 +1,23 @@
+<div class="flex flex-col gap-1 relative items-start w-full" [class]="className">
+    <label class="text-capital-gray-dark font-inter text-[13px] md:text-sm font-normal" [class]="labelClassName" *ngIf="label">{{label}}</label>
+    <p-select 
+        (onChange)="onInputChange($event)" 
+        *ngIf="type === 'single'" 
+        class="border shadow-none pl-4 py-[9px] border-[#cbd5e1c7] flex w-full rounded text-sm font-inter font-light" 
+        [options]="options" 
+        [optionLabel]="optionLabel" 
+        [optionValue]="optionValue" 
+        [placeholder]="placeholder || ''"
+        [(ngModel)]="value"
+        [disabled]="disabled"/>
+    <p-multiselect 
+        (onChange)="onInputChange($event)" 
+        *ngIf="type === 'multiple'" 
+        class="border shadow-none pl-4 py-[9px] border-[#cbd5e1c7] flex w-full rounded text-sm font-inter font-light" 
+        [options]="options" 
+        [optionLabel]="optionLabel" 
+        [optionValue]="optionValue" 
+        [placeholder]="placeholder || ''"
+        [(ngModel)]="value"
+        [disabled]="disabled"/>
+</div>

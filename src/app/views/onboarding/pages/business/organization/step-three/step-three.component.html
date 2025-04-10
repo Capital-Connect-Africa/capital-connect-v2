@@ -1,0 +1,36 @@
+<section class="flex flex-col lg:justify-center lg:items-center">
+    <div class="w-full md:w-[360px] flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+            <div class="flex flex-col text-left w-full">
+                <h2 class="text-capital-black font-inter text-sm font-semibold uppercase">Upload Logo</h2>
+                <p class="text-xs">Supported formats: PNG, JPG, 3MB or less</p>
+            </div>
+            <button *ngIf="selectedFile" (click) ="removeImage()">
+                <i class="pi pi-trash text-xs font-light text-rose-400"></i>
+            </button>
+        </div>
+        <div (click)="file.click()" class="cursor-pointer w-full h-[250px] flex flex-col justify-center items-center" [ngClass]="{'bg-[#F8F8FF] border border-dashed rounded border-[#384EB7] border-opacity-30': !selectedFile}">
+            <div *ngIf="!selectedFile" class="p-8 flex items-center justify-center flex-col gap-4">
+                <i class="pi pi-cloud-upload text-4xl font-extralight text-capital-yellow-100"></i>
+                <p class="font-light text-xs"><span class="hidden lg:inline">Drag 'n' drop or</span> Browse Logo</p>
+            </div>
+            <div *ngIf="selectedFile" class="max-h-full max-w-full mx-auto">
+                <img *ngIf="imagePreview" [src]="imagePreview" class="block max-w-full max-h-full">
+            </div>
+        </div>
+        <input #file type="file" hidden accept="image/png,image/jpg,image/jpeg" (change)="handleFileInput($event)"/>
+        <div class="-mt-1 pt-[6px] pb-[4px] flex justify-between items-center relative  overflow-hidden" *ngIf="isUploading">
+            <p class="text-xs font-inter text-capital-green-100 font-normal leading-[20px] uppercase">Uploading...</p>
+            <button (click)="cancelUpload()">
+                <i class="pi pi-times-circle font-light text-capital-green-75"></i>
+            </button>
+            <div class="absolute h-[3px] bottom-0 left-0 w-full bg-capital-green-25 rounded-full overflow-hidden">
+                <div class="h-full w-1/2 bg-capital-green-75"></div>
+            </div>
+        </div>
+        <div class="flex flex-col-reverse lg:flex-row lg:items-center gap-4 lg:gap-6 justify-between pt-4">
+            <app-button (onClick)="back()" label="Previous Step" [showLeftArrow]="true" [showArrow]="false" className=" text-capital-yellow-100 md:!py-[10px] !text-sm border hover:bg-capital-yellow-100 border-capital-yellow-100 hover:text-white hover:border-transparent transition-all" />
+            <app-button (onClick)="uploadLogo()" label="Upload & Submit" className="! bg-capital-green-75 md:!py-[10px] !text-sm border border-transparent hover:bg-transparent hover:!text-capital-green-75 hover:border-capital-green-75 transition-all" />
+        </div>
+    </div>
+</section>

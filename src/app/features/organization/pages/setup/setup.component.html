@@ -1,0 +1,37 @@
+<ng-container *ngIf="submitCompanyInfo$ | async"></ng-container>
+<ng-container *ngIf="companyOfUser$  | async"></ng-container>
+<ng-container *ngIf="companyToBeEdited$ | async"></ng-container>
+<ng-container *ngIf="router$ | async"></ng-container>
+
+<main class="main">
+  <div class="logo"><img alt="logo" src="assets/img/logo.png" /></div>
+  <section class="main__content__section">
+    <div class="title__bar">
+      <h2>Customize your Organization</h2>
+      <p>Let's set you up quick</p>
+    </div>
+
+    <div class="content">
+      <ul class="steps">
+        @for (step of steps; track $index) {
+        <li class="step" [class.active]="current_step == $index+1" [class.done]="current_step >$index+1">{{step}}</li>
+        }
+      </ul>
+      <div class="hr"></div>
+      <app-step-one [companyToBeEdited]="companyToBeEdited" *ngIf="current_step == 1" />
+      <app-step-two [companyToBeEdited]="companyToBeEdited" *ngIf="current_step == 2" />
+      <app-step-three [companyToBeEdited]="companyToBeEdited" *ngIf="current_step == 3" />
+      <app-step-four *ngIf="current_step == 4" />
+    </div>
+    <div class="buttons__group">
+      <button (click)="cancel()" class="outline" *ngIf="current_step ===  1">Cancel</button>
+      <button class="outline" *ngIf="current_step > 1 && current_step < 4" (click)="setStep(-1)">Previous Step</button>
+      <div class="form__controls">
+        <button class="outline" (click)="setStep(1)" *ngIf="current_step == 3 ">Skip Step</button>
+        <button [disabled]="isDisabled" class="fill" [ngClass]="{'disabled-btn' : isDisabled }" (click)="setStep(1)"
+          *ngIf="current_step < 4">Continue</button>
+        <button class="fill" (click)="goToBusinessProfile()" *ngIf="current_step === 4">Let's Start</button>
+      </div>
+    </div>
+  </section>
+</main>
