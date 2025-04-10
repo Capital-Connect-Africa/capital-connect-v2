@@ -13,6 +13,8 @@ import { ResendEmailVerificationDto } from "../interfaces/resend.verification.em
 import { Session } from "../interfaces/session.interface";
 import { ErrorStore } from "../../../core/store/http.errors.store";
 import { objTostr } from "../../../core/utils/object.to.string.util";
+import { USER_ROLES } from "../../users/enums/user.roles.enum";
+import { Router } from "@angular/router";
 
 const initialState:AuthState ={
     session: null,
@@ -22,7 +24,9 @@ const initialState:AuthState ={
 export const AuthStore =signalStore(
     {providedIn: 'root'},
     withState(initialState),
-    withMethods((store, authservice =inject(AuthService), errorStore =inject(ErrorStore), toast =inject(ToastService), userStore =inject(UsersStore)) =>{
+    withMethods((store,
+        _router = inject(Router),
+         authservice =inject(AuthService), errorStore =inject(ErrorStore), toast =inject(ToastService), userStore =inject(UsersStore)) =>{
         return {
             async signIn(credentials: SignInDto){
                 try {
@@ -36,6 +40,41 @@ export const AuthStore =signalStore(
                         severity: 'success',
                         position: 'bottom-right'
                     })
+                    const profile = await authservice.getUserProfile()
+
+                    switch (profile.roles as USER_ROLES) {
+                        case USER_ROLES.USER:
+                            _router.navigateByUrl('/onboarding/business/organization-setup');                            
+                            break
+                        case USER_ROLES.INVESTOR:
+                            _router.navigateByUrl('/investor-onboarding');                            
+                            break                          
+                        case USER_ROLES.CONTACT_PERSON:
+                            _router.navigateByUrl('/advisor/profile');
+                            break
+                        case USER_ROLES.ADVISOR:
+                            _router.navigateByUrl('/advisor/profile');
+                            break
+                        case USER_ROLES.PARTNER:
+                            _router.navigateByUrl('/partner');
+                            break
+                        case USER_ROLES.STAFF:
+                            _router.navigateByUrl('/staff');
+                            break
+                        case USER_ROLES.ADMIN:
+                            _router.navigateByUrl('/dashboard');
+                            break
+                      }
+
+
+
+
+
+
+
+
+
+
                 } catch (e:any) {
                     const err =errorStore.error();
                     toast.show({

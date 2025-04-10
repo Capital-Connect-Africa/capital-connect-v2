@@ -31,7 +31,7 @@ export class AuthService extends BaseHttpService<User> {
   }
 
   getUserProfile() {
-    return lastValueFrom (this.get(`${this.BASE_URL}/users/profile`).pipe(
+    return lastValueFrom (this.get(`/users/profile`).pipe(
       map((res:any) => {
         return res as Profile
       })
